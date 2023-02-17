@@ -6,7 +6,7 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/17 16:15:57 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/17 16:22:23 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,12 +27,14 @@ all		: $(NAME)
 
 $(NAME)	: $(OBJS)
 		@echo "compiling..."
+		@make all -s -C libft
 		@make all -s -C mlx
-		@$(CC) $(CFLAGS) $(CLIB) $(SRCS) -I $(INCLUDES) -o $(NAME)
+		@$(CC) $(CFLAGS) $(CLIB) $(SRCS) libft/libft.a -I $(INCLUDES) -o $(NAME)
 		@echo "done!"
 
 clean	:
 		@make clean -s -C mlx
+		@make clean -s -C libft
 		@rm -rf $(OBJS)
 		@echo "erasing .o files"
 
