@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/17 21:10:09 by taeypark         ###   ########.fr       */
+/*   Created: 2023/02/17 21:10:20 by taeypark          #+#    #+#             */
+/*   Updated: 2023/02/17 21:12:07 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef MAIN_H
+# define MAIN_H
+# include "libft/libft.h"
+# include "mlx/mlx.h"
+# include "vec3/vec3.h"
+# include <stdio.h>
 
-int	main(int argc, char **argv)
-{
-	(void)argc, (void)argv;
-	printf("hello\n");
-	// parse .rt file
-	// make ray tracing!
-	// mlx_loop()!
-	return (0);
-}
+
+#endif
