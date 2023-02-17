@@ -40,7 +40,7 @@ clean	:
 
 fclean	: clean
 		@rm -rf $(NAME)
-		@echo "erasing .exec files"
+		@echo "erasing executable"
 
 bonus	: all
 

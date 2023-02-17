@@ -42,10 +42,8 @@ static int	get_len(char const *str, char c, int flag)
 
 static char	*make_copy(const char *s, int len)
 {
-	int		i;
 	char	*ret;
 
-	i = 0;
 	ret = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!ret)
 		return (0);
