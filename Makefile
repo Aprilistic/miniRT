@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/17 16:05:59 by jinheo           ###   ########.fr        #
+#    Updated: 2023/02/17 16:14:25 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,13 @@ all		: $(NAME)
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJS)
+		@make all -s -C mlx
 		@$(CC) $(CFLAGS) $(CLIB) $(SRCS) -I $(INCLUDES) -o $(NAME)
 		@echo "compiling..."
 		@echo "done!"
 
 clean	:
+		@make clean -s -C mlx
 		@rm -rf $(OBJS)
 		@echo "erasing .o files"
 
