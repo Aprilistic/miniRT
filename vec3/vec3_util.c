@@ -13,14 +13,14 @@
 #include <math.h>
 #include "vec3.h"
 
-void	init_vector(t_vec3 *vec, double e0, double e1, double e2)
+void	init(t_vec3 *vec, double e0, double e1, double e2)
 {
 	vec->e[0] = e0;
 	vec->e[1] = e1;
 	vec->e[2] = e2;
 }
 
-t_vec3	add_vector(t_vec3 *left, t_vec3 *right)
+t_vec3	add(t_vec3 *left, t_vec3 *right)
 {
 	t_vec3	result;
 
@@ -30,7 +30,7 @@ t_vec3	add_vector(t_vec3 *left, t_vec3 *right)
 	return (result);
 }
 
-t_vec3	sub_vector(t_vec3 *left, t_vec3 *right)
+t_vec3	sub(t_vec3 *left, t_vec3 *right)
 {
 	t_vec3	result;
 
@@ -40,14 +40,14 @@ t_vec3	sub_vector(t_vec3 *left, t_vec3 *right)
 	return (result);
 }
 
-double	dot_vector(t_vec3 *left, t_vec3 *right)
+double	dot(t_vec3 *left, t_vec3 *right)
 {
 	return (left->e[0] * right->e[0]
 		+ left->e[1] * right->e[1]
 		+ left->e[2] * right->e[2]);
 }
 
-t_vec3	cross_vector(t_vec3 *left, t_vec3 *right)
+t_vec3	cross(t_vec3 *left, t_vec3 *right)
 {
 	t_vec3	result;
 

@@ -12,7 +12,7 @@
 
 #include "vec3.h"
 
-t_vec3	mul_vector(t_vec3 *left, t_vec3 *right)
+t_vec3	mul(t_vec3 *left, t_vec3 *right)
 {
 	t_vec3	result;
 
@@ -32,14 +32,14 @@ t_vec3	mul_scalar(t_vec3 *vector, double scalar)
 	return (result);
 }
 
-t_vec3	unit_vector(t_vec3 *vector)
+t_vec3	unit(t_vec3 *vector)
 {
 	return (mul_scalar(vector, 1 / length(vector)));
 }
 
 double	length_squared(t_vec3 *vector)
 {
-	return (dot_vector(vector, vector));
+	return (dot(vector, vector));
 }
 
 double	length(t_vec3 *vector)
