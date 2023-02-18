@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "vec3.h"
 
 void	init_vector(t_vec3 *vec, double e0, double e1, double e2)

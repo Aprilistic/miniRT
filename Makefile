@@ -17,8 +17,8 @@ OBJS	= $(SRCS:.c=.o)
 INCLUDES = includes/
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra
-CLIB	= -Lmlx -lmlx -Imlx -framework OpenGL -framework Appkit
+CFLAGS	= -Wall -Werror -Wextra -I./includes
+CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 all		: $(NAME)
 
