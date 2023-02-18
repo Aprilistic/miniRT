@@ -18,5 +18,4 @@
 # include "ray.h"
 # include <stdio.h>
 
-
 #endif
