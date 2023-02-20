@@ -18,7 +18,6 @@ INCLUDES = includes/
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -I./includes
-# CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
 CLIB	= -lmlx -framework OpenGL -framework Appkit
 
 
@@ -30,14 +29,11 @@ all		: $(NAME)
 $(NAME)	: $(OBJS)
 		@echo "compiling libft..."
 		@make all -s -C libft
-		@echo "compiling mlx..."
-		@make all -s -C mlx
 		@echo "compiling all..."
 		@$(CC) $(CFLAGS) $(CLIB) $(SRCS) libft/libft.a -I $(INCLUDES) -o $(NAME)
 		@echo "done!"
 
 clean	:
-		@make clean -s -C mlx
 		@make clean -s -C libft
 		@rm -rf $(OBJS)
 		@echo "erasing .o files"
