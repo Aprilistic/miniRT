@@ -12,13 +12,15 @@
 
 NAME	= miniRT
 
-SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c
+SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c
 OBJS	= $(SRCS:.c=.o)
 INCLUDES = includes/
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -I./includes
-CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
+# CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
+CLIB	= -lmlx -framework OpenGL -framework Appkit
+
 
 all		: $(NAME)
 

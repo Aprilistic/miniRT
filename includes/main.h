@@ -13,9 +13,13 @@
 #ifndef MAIN_H
 # define MAIN_H
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+// # include "../mlx/mlx.h"
+# include <mlx.h>
 # include "vec3.h"
 # include "ray.h"
+# include "our_mlx.h"
 # include <stdio.h>
+
+
 
 #endif

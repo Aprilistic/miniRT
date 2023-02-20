@@ -1,6 +1,5 @@
 #ifndef RAY_H
 # define RAY_H
-# include "color.h"
 # include "vec3.h"
 
 typedef t_vec3	t_point3;
