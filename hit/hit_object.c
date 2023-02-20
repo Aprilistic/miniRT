@@ -44,9 +44,9 @@ bool	hit(t_hittable *world, t_ray *ray)
 	return (false);
 }
 
-t_color	ray_color(const t_ray *r, const t_hittables *world, int depth)
+t_texture	ray_color(const t_ray *r, const t_hittables *world, int depth)
 {
-	t_color	ret;
+	t_texture	ret;
 
 	ret.r = 0;
 	ret.g = 0;

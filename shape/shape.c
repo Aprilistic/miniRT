@@ -1,8 +1,8 @@
 #include "../includes/shape.h"
 
-double hit_sphere(const t_sphere *)
+double	hit_sphere(const t_sphere *)
 
-void	init_shape(t_shape *shape, int type, t_color *color, void *info)
+	void init_shape(t_shape *shape, int type, t_texture *color, void *info)
 {
 	shape->type = type;
 	shape->color = *color;
