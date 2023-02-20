@@ -4,6 +4,33 @@
 #include <math.h>
 #include <stdbool.h>
 
+t_shape *find_closest_object(t_hittable *world, t_ray *ray)
+{
+	int	index;
+	t_vec3	hitting_point;
+	double	dist;
+	double	min_dist;
+	int		min_index;
+
+	index = 0;
+	min_dist = INFINITY;
+	min_index = -1;
+	while (index < world->cur_count)
+	{
+		hitting_point = get_hitting_point(world->objects[index], ray);
+		dist = get_3rd_distance(ray->origin, hitting_point);
+		if (dist<min_dist)
+		{
+			min_dist = dist;
+			min_index = index;
+		}
+		index++;
+	}
+	if (index < 0)
+		return (NULL);
+	return (world->object[index]);
+}
+
 bool	hit(t_hittable *world, t_ray *ray)
 {
 	t_shape	*closest_object;
