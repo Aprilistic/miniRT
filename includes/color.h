@@ -7,7 +7,7 @@ typedef struct s_color
 {
 	int		checkerboard;
 	t_vec3	rgb;
-	double	shineness;	
+	double	reflectivity;	
 	double	brightness;
 }	t_color;
 

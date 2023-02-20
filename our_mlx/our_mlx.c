@@ -1,4 +1,3 @@
-
 #include "../includes/main.h"
 
 void	init_mlx(t_mlx *mlx)

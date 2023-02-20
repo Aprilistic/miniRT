@@ -19,7 +19,6 @@ typedef struct s_vec3
 	double	e[3];
 }	t_vec3;
 
-typedef t_vec3	t_color;
 typedef t_vec3	t_point;
 
 /* initialize */
