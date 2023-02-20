@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "main.h"
-#include "includes/our_mlx.h"
-#include "mlx/mlx.h"
 
 void	make_ray_tracing(t_mlx *mlx)
 {
