@@ -6,8 +6,9 @@
 typedef struct s_texture {
   int checkerboard;
   t_vec3 rgb;
-  double reflectivity;
-  double brightness;
+  float  diffuse_rate;
+  float  specular_rate;
+  float  brightness_rate;
 } t_texture;
 
 #endif
