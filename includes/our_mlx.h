@@ -4,6 +4,7 @@
 # define X_SIZE 500
 # define WIN_NAME "miniRT"
 # define DESTROY_ICON 17
+# include "hittable.h"
 
 enum	e_key
 {
@@ -38,6 +39,7 @@ typedef struct s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_data		img;
+	t_hittable	*obj_list;
 }	t_mlx;
 
 void	init_mlx(t_mlx *mlx);

@@ -42,8 +42,11 @@ int	main(int argc, char **argv)
 	}
 
 	// parse .rt file
-	(void)argv;
-
+	if (parse(argv[1], &mlx) == ERROR)
+	{
+		write(2, ".rt error\n", 10);
+		return (0);
+	}
 
 	// make ray tracing!
 	init_mlx(&mlx);

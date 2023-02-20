@@ -39,6 +39,7 @@ clean	:
 		@echo "erasing .o files"
 
 fclean	: clean
+		@make fclean -s -C libft
 		@rm -rf $(NAME)
 		@echo "erasing executable"
 

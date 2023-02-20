@@ -4,14 +4,12 @@
 #include "ray.h"
 #include "shape.h"
 
-typedef struct s_hittable t_hittable;
-
-struct s_hittable
+typedef struct s_hittable
 {
 	int			max_count;
 	int			cur_count;
-	t_shape		*object;
-};
+	t_shape		**object;
+}	t_hittable;
 
 void		init_hittable(t_hittable *world);
 void		resize_hittable(t_hittable *world);

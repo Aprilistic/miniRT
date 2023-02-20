@@ -1,6 +1,5 @@
 #ifndef SHAPE_H
 # define SHAPE_H
-# include "color.h"
 # include "ray.h"
 # include "vec3.h"
 
