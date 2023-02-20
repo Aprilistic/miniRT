@@ -16,7 +16,7 @@ struct s_hittable
 void		init_hittable(t_hittable *world);
 void		resize_hittable(t_hittable *world);
 void		add_to_hittable(t_hittable *world, t_shape *object);
-void		delete_hittalbe(t_hittable *world);
+void		delete_hittable(t_hittable *world);
 t_hittable	*find_closest_object(t_hittable *world, t_ray *ray);
 void		update_ray(t_shape *object, t_ray *ray);
 
