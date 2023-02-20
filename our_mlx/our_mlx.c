@@ -18,3 +18,22 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
+int	key_hook(int keycode, t_mlx *mlx)
+{
+	if (keycode == ESC_KEY)
+		destroy_window(mlx);
+	return (0);
+}
+
+int	destroy_window(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	exit(0);
+}
+
+void	minirt_hook(t_mlx *mlx)
+{
+	mlx_key_hook(mlx->win_ptr, &key_hook, mlx);
+	mlx_hook(mlx->win_ptr, DESTROY_ICON, 0, &destroy_window, mlx);
+}

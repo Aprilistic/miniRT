@@ -50,6 +50,8 @@ int	main(int argc, char **argv)
 	make_ray_tracing(&mlx);
 
 	// mlx_loop()!
+	minirt_hook(&mlx);
 	mlx_loop(mlx.mlx_ptr);
+
 	return (0);
 }
