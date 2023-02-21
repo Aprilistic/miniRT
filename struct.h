@@ -45,6 +45,8 @@ typedef struct s_hittable
 	int			max_light_count;
 	int			cur_light_count;
 	t_light		**light;
+	t_color		ambiance;
+	t_color		background;
 }				t_hittable;
 
 typedef struct s_record
