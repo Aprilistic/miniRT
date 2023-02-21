@@ -7,9 +7,8 @@
 // sp   0.0,0.0,20.6   12.6    10,0,255
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 {
-	t_shape		shape;
+	t_object	object;
 	t_sphere	*sphere;
-	char		*save;
 	int			field_cnt;
 
 	field_cnt = 0;
@@ -23,35 +22,27 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	sphere = malloc(sizeof(t_sphere));
-	save = splited_line[1];
-	sphere->center = parse_three_double(&save, status);
-	save = splited_line[2];
-	sphere->diameter = atod(&save, status);
-	save = splited_line[3];
-	shape.color.color = parse_three_double(&save, status);
+	sphere->center = parse_three_double(splited_line[1], status);
+	sphere->diameter = atod(splited_line[2], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// save = splited_line[4];
-	// shape.color.checkerboard = (atod(&save, status) != 0);
-	// save = splited_line[5];
-	// shape.color.diffuse_rate = atod(&save, status);
-	// save = splited_line[6];
-	// shape.color.specular_rate = atod(&save, status);
-	// save = splited_line[7];
-	// shape.color.brightness_rate = atod(&save, status);
+	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[5], status);
+	// object.surface.specular_rate = atod(splited_line[6], status);
+	// object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
-	shape.type = SPHERE;
-	shape.characteristic = sphere;
-	add_to_hittable(mlx->obj_list, shape);
+	object.type = SPHERE;
+	object.equation = sphere;
+	add_to_hittable(&mlx->world, object);
 }
 
 // pl     0.0,0.0,-10.0    0.0,1.0,0.0   0,0,255
 void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 {
-	t_shape		shape;
+	t_object	object;
 	t_plane		*plane;
-	char		*save;
 	int			field_cnt;
 
 	field_cnt = 0;
@@ -65,35 +56,27 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	plane = malloc(sizeof(t_plane));
-	save = splited_line[1];
-	plane->point = parse_three_double(&save, status);
-	save = splited_line[2];
-	plane->dir_vector = parse_three_double(&save, status);
-	save = splited_line[3];
-	shape.color.color = parse_three_double(&save, status);
+	plane->point = parse_three_double(splited_line[1], status);
+	plane->dir_vector = parse_three_double(splited_line[2], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// save = splited_line[4];
-	// shape.color.checkerboard = (atod(&save, status) != 0);
-	// save = splited_line[5];
-	// shape.color.diffuse_rate = atod(&save, status);
-	// save = splited_line[6];
-	// shape.color.specular_rate = atod(&save, status);
-	// save = splited_line[7];
-	// shape.color.brightness_rate = atod(&save, status);
+	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[5], status);
+	// object.surface.specular_rate = atod(splited_line[6], status);
+	// object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
-	shape.type = PLANE;
-	shape.characteristic = plane;
-	add_to_hittable(mlx->obj_list, shape);
+	object.type = PLANE;
+	object.equation = plane;
+	add_to_hittable(&mlx->world, object);
 }
 
 // cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 {
-	t_shape			shape;
+	t_object		object;
 	t_cylinder		*cylinder;
-	char			*save;
 	int				field_cnt;
 
 	field_cnt = 0;
@@ -107,29 +90,21 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	cylinder = malloc(sizeof(t_cylinder));
-	save = splited_line[1];
-	cylinder->point = parse_three_double(&save, status);
-	save = splited_line[2];
-	cylinder->dir_vector = parse_three_double(&save, status);
-	save = splited_line[3];
-	cylinder->diameter = atod(&save, status);
-	save = splited_line[4];
-	cylinder->height = atod(&save, status);
+	cylinder->point = parse_three_double(splited_line[1], status);
+	cylinder->dir_vector = parse_three_double(splited_line[2], status);
+	cylinder->diameter = atod(splited_line[3], status);
+	cylinder->height = atod(splited_line[4], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// save = splited_line[4];
-	// shape.color.checkerboard = (atod(&save, status) != 0);
-	// save = splited_line[5];
-	// shape.color.diffuse_rate = atod(&save, status);
-	// save = splited_line[6];
-	// shape.color.specular_rate = atod(&save, status);
-	// save = splited_line[7];
-	// shape.color.brightness_rate = atod(&save, status);
+	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[6], status);
+	// object.surface.specular_rate = atod(splited_line[7], status);
+	// object.surface.brightness_rate = atod(splited_line[8], status);
 
 	// 드디어 list에 넣기!!!
-	shape.type = CYLINDER;
-	shape.characteristic = cylinder;
-	add_to_hittable(mlx->obj_list, shape);
+	object.type = CYLINDER;
+	object.equation = cylinder;
+	add_to_hittable(&mlx->world, object);
 }
 
 void	parse_cone(char **splited_line, t_mlx *mlx, int *status)

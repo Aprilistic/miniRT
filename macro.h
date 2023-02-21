@@ -14,6 +14,12 @@
 # define S_SPACES " \t\r\n\v\f"
 # define OK 0
 # define ERROR -1
+# define CAP_CNT 3
+enum	e_idx
+{
+	LINE,
+	CAPITAL
+};
 
 /* our_mlx macros */
 # define Y_SIZE 500
