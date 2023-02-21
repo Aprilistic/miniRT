@@ -61,4 +61,9 @@ void	resize_hittable(t_hittable *world);
 void	add_to_hittable(t_hittable *world, t_shape *object);
 void	delete_hittable(t_hittable *world);
 
+
+/*	reflection functions	*/
+t_ray	diffuse_ray(t_ray incident, t_record hit_record);
+t_ray	specular_ray(t_ray incident, t_record hit_record);
+
 #endif
