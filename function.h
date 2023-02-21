@@ -24,9 +24,9 @@ t_vec3	v_mul(t_vec3 *left, t_vec3 *right);
 t_vec3	v_mul_scalar(t_vec3 *vector, double scalar);
 
 t_color	init_color(double r, double g, double b);
-t_color	ray_color(t_ray *ray, t_hittable *world, int depth);
+t_color	ray_color(t_ray ray, t_hittable *world, int depth);
 double	random_double(double min, double max);
-t_ray	diffuse_ray(t_ray *incident, t_record *hit_record);
-t_ray	specular_ray(t_ray *incident, t_record *hit_record);
+t_ray	diffuse_ray(t_ray incident, t_record hit_record);
+t_ray	specular_ray(t_ray incident, t_record hit_record);
 
 #endif
