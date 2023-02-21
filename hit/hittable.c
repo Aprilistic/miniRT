@@ -1,5 +1,5 @@
-#include "hittable.h"
-#include "../libft/libft.h"
+#include "struct.h"
+#include "function.h"
 
 void	init_hittable(t_hittable *world)
 {

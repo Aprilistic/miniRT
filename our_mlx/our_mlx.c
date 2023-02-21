@@ -1,4 +1,5 @@
-#include "../includes/main.h"
+#include "function.h"
+#include "macro.h"
 
 void	init_mlx(t_mlx *mlx)
 {

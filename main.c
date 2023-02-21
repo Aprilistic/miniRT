@@ -6,11 +6,13 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/17 21:10:09 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:31:53 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "struct.h"
+#include "function.h"
+#include "macro.h"
 
 void	make_ray_tracing(t_mlx *mlx)
 {
@@ -31,6 +33,17 @@ void	make_ray_tracing(t_mlx *mlx)
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 }
 
+int	check_filename(char *filename)
+{
+	int	len;
+
+	len = ft_strlen(filename);
+	if ((len >= 3) && (filename[len - 3] == '.'
+		&& filename[len - 2] == 'r' && filename[len - 1] == 't'))
+		return (OK);
+	return (ERROR);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
@@ -42,7 +55,7 @@ int	main(int argc, char **argv)
 	}
 
 	// parse .rt file
-	if (parse(argv[1], &mlx) == ERROR)
+	if (check_filename(argv[1]) == ERROR || parse(argv[1], &mlx) == ERROR)
 	{
 		write(2, ".rt error\n", 10);
 		return (0);

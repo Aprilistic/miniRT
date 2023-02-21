@@ -6,11 +6,13 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 20:45:10 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/17 21:04:32 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/21 20:31:27 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "../struct.h"
+#include "../function.h"
+#include "../macro.h"
 
 t_vec3	v_mul(t_vec3 *left, t_vec3 *right)
 {
@@ -34,15 +36,15 @@ t_vec3	v_mul_scalar(t_vec3 *vector, double scalar)
 
 t_vec3	v_unit(t_vec3 *vector)
 {
-	return (mul_scalar(vector, 1 / length(vector)));
+	return (v_mul_scalar(vector, 1 / v_length(vector)));
 }
 
 double	v_length_squared(t_vec3 *vector)
 {
-	return (dot(vector, vector));
+	return (v_dot(vector, vector));
 }
 
 double	v_length(t_vec3 *vector)
 {
-	return (sqrt(length_squared(vector)));
+	return (sqrt(v_length_squared(vector)));
 }

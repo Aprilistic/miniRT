@@ -6,18 +6,19 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/17 21:13:53 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/21 20:33:44 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= miniRT
 
-SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c
+SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c \
+			parse/parse.c parse/parse_util.c parse/parse_util2.c hit/hittable.c
 OBJS	= $(SRCS:.c=.o)
 INCLUDES = includes/
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -I./includes
+CFLAGS	= -Wall -Werror -Wextra -I.
 CLIB	= -lmlx -framework OpenGL -framework Appkit
 
 
