@@ -26,7 +26,8 @@ t_color	get_color(t_record *hit_record)
 			return (init_color(238, 238, 238));
 	}
 	else
-		return (hit_record->suface.color);
+		return (v_mul_scalar(&hit_record->suface.color,
+				1 + hit_record->suface.brightness_rate));
 }
 
 t_color	ray_color(t_ray ray, t_hittable *world, int depth)
@@ -53,4 +54,6 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		return (v_add(&world->ambiance, &world->background));
 }
 
-//phong relfection is not implemented yet. 
+//spot brightness is needed
+//light attenuation is also needed
+//phong relfection is not implemented yet.
