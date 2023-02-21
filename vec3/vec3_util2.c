@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "struct.h"
 
-t_vec3	mul(t_vec3 *left, t_vec3 *right)
+t_vec3	v_mul(t_vec3 *left, t_vec3 *right)
 {
 	t_vec3	result;
 
@@ -22,7 +22,7 @@ t_vec3	mul(t_vec3 *left, t_vec3 *right)
 	return (result);
 }
 
-t_vec3	mul_scalar(t_vec3 *vector, double scalar)
+t_vec3	v_mul_scalar(t_vec3 *vector, double scalar)
 {
 	t_vec3	result;
 
@@ -32,17 +32,17 @@ t_vec3	mul_scalar(t_vec3 *vector, double scalar)
 	return (result);
 }
 
-t_vec3	unit(t_vec3 *vector)
+t_vec3	v_unit(t_vec3 *vector)
 {
 	return (mul_scalar(vector, 1 / length(vector)));
 }
 
-double	length_squared(t_vec3 *vector)
+double	v_length_squared(t_vec3 *vector)
 {
 	return (dot(vector, vector));
 }
 
-double	length(t_vec3 *vector)
+double	v_length(t_vec3 *vector)
 {
 	return (sqrt(length_squared(vector)));
 }
