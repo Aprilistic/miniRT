@@ -1,5 +1,4 @@
 #include "function.h"
-#include "includes/vec3.h"
 #include "struct.h"
 #include <math.h>
 #include <stdlib.h>
@@ -26,38 +25,9 @@ t_color	get_surface_color(t_record *hit_record)
 			return (init_color(238, 238, 238));
 	}
 	else
-		return (v_mul_scalar(&hit_record->suface.color,
+		return (v_mul_scalar(hit_record->suface.color,
 				1 + hit_record->suface.brightness_rate));
 }
-
-// t_color	ray_color(t_ray ray, t_hittable *world, int depth)
-// {
-// 	t_record	hit_record;
-// 	t_color		diffuse;
-// 	t_color		specular;
-// 	t_color		color;
-// 	t_color		sum;
-
-// 	if (depth < 0)
-// 		return (init_color(0, 0, 0));
-// 	else if (hit(ray, world, hit_record))
-// 	{
-// 		diffuse = ray_color(diffuse_ray(ray, hit_record), world, depth - 1);
-// 		diffuse = v_add(&diffuse, &world->ambiance);
-// 		color = get_color(&hit_record);
-// 		sum = v_mul(&diffuse, &color);
-// 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
-// 		specular = v_add(&diffuse, &world->ambiance);
-// 		return (v_add(&sum, &specular));
-// 	}
-// 	else
-// 		return (v_add(&world->ambiance, &world->background));
-// }
-
-//spot brightness is needed
-//light attenuation is also needed
-//phong relfection is not implemented yet.
-//brightness limit is needed to be implemented
 
 double	clamp(double d, double min, double max)
 {
@@ -107,6 +77,7 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	t_color		diffuse;
 	t_color		specular;
 	t_color		common;
+	t_color		sum;
 
 	if (depth < 0)
 		return (init_color(0, 0, 0));
@@ -117,9 +88,11 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		specular = ray_color(specular_ray(ray, hit_record), world, depth);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
+		sum = v_add(diffuse, common);
+		sum = v_mul(sum, get_surface_color(&hit_record));
+		sum = v_add(sum, specular);
+		return (v_mul_scalar(sum, attenuation(ray.origin, hit_record.origin)));
 	}
 	else
-	{
-	
-	}
+		return (world->background);
 }

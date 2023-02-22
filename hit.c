@@ -1,6 +1,6 @@
 #include "struct.h"
 
-int	hit(t_ray *ray, t_hittable *world, t_record *hit_record)
+int	hit(t_ray ray, t_hittable *world, t_record *hit_record)
 {
 	int	index;
 	int	hit_surface;
