@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/22 15:55:20 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:43:42 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	make_ray_tracing(t_mlx *mlx)
 		x = 0;
 		while (x < X_SIZE)
 		{
-			my_mlx_pixel_put(&mlx->img, y, x, 0x00FFFFFF);
+			my_mlx_pixel_put(&mlx->img, x, y, 0x00FFFFFF);
 			x++;
 		}
 		y++;

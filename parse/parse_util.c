@@ -11,22 +11,16 @@ void	parse_ambient(char **splited_line, t_mlx *mlx
 	int			str_cnt;
 	double		ambient_ratio;
 
-	if (was_here == 0)
-		(*cap_status)++;
-	else
-	{
-		*status = ERROR;
-		return ;
-	}
-	was_here = 1;
 	str_cnt = 0;
 	while (splited_line[str_cnt])
 		str_cnt++;
-	if (str_cnt != 3)
+	if (was_here == 1 || str_cnt != 3)
 	{
 		*status = ERROR;
 		return ;
 	}
+	(*cap_status)++;
+	was_here = 1;
 	ambient_ratio = atod(splited_line[1], status);
 	mlx->world.ambiance
 		= v_mul_scalar(parse_three_double(splited_line[2], status)
@@ -39,22 +33,16 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 	static int	was_here;
 	int			str_cnt;
 
-	if (was_here == 0)
-		(*cap_status)++;
-	else
-	{
-		*status = ERROR;
-		return ;
-	}
-	was_here = 1;
 	str_cnt = 0;
 	while (splited_line[str_cnt])
 		str_cnt++;
-	if (str_cnt != 4)
+	if (was_here == 1 || str_cnt != 4)
 	{
 		*status = ERROR;
 		return ;
 	}
+	(*cap_status)++;
+	was_here = 1;
 	mlx->camera.origin = parse_three_double(splited_line[1], status);
 	mlx->camera.dir = parse_three_double(splited_line[2], status);
 	mlx->fov = atod(splited_line[3], status);
@@ -68,24 +56,19 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	t_light		light;
 	double		brightness;
 
-	if (was_here == 0)
-		(*cap_status)++;
-	else
-	{
-		*status = ERROR;
-		return ;
-	}
-	was_here = 1;
 	str_cnt = 0;
 	while (splited_line[str_cnt])
 		str_cnt++;
-	if (str_cnt != 4)
+	if (was_here == 1 || str_cnt != 4)
 	{
 		*status = ERROR;
 		return ;
 	}
+	(*cap_status)++;
+	was_here = 1;
 	light.origin = parse_three_double(splited_line[1], status);
 	brightness = atod(splited_line[2], status);
-	light.color = v_mul_scalar(parse_three_double(splited_line[3], status), brightness);
+	light.color = v_mul_scalar(parse_three_double(splited_line[3], status)
+					, brightness);
 	add_light_hittable(&mlx->world, light);
 }

@@ -1,12 +1,31 @@
-#include "struct.h"
-#include "macro.h"
+#include "../struct.h"
+#include "../macro.h"
+
+void	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
+{
+	
+}
+
 
 // 각 타입에 따라서 만나는 지점을 구하는 함수로 들어간다.
 int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 {
 	if (object->type == SPHERE)
 	{
-		// 구에
+		// 구와 만나는지 구하는 함수
+		hit_by_sphere(ray, object, hit_record);
+	}
+	else if (object->type == CYLINDER)
+	{
+		// 원기둥과 만나는지 구하는 함수
+	}
+	else if (object->type == CONE)
+	{
+		// 콘과 만나는지 구하는 함수
+	}
+	else if (object->type == PLANE)
+	{
+		// 면과 만나는지 구하는 함수
 	}
 }
 

@@ -22,8 +22,8 @@ enum	e_idx
 };
 
 /* our_mlx macros */
-# define Y_SIZE 500
-# define X_SIZE 500
+# define Y_SIZE 720
+# define X_SIZE 1280
 # define WIN_NAME "miniRT"
 # define DESTROY_ICON 17
 enum	e_key
