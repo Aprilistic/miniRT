@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/22 19:10:34 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:49:30 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,20 +117,28 @@ void	debug_parsing(t_mlx *mlx)
 	printf("=================\n\n");
 }
 
+void	print_error(char *msg)
+{
+	int	len;
+
+	len = ft_strlen(msg);
+	write(2, msg, len);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
 	if (argc != 2)
 	{
-		write(2, "argc Error\n", 11);
+		print_error("Error: wrong argument count\n");
 		return (0);
 	}
 
 	// parse .rt file
 	if (check_filename(argv[1]) == ERROR || parse(argv[1], &mlx) == ERROR)
 	{
-		write(2, ".rt Error\n", 10);
+		print_error("Error: wrong .rt file\n");
 		return (0);
 	}
 

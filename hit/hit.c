@@ -1,9 +1,33 @@
 #include "../struct.h"
 #include "../macro.h"
+#include "../function.h"
 
-void	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
+int	hit_by_sphere(t_ray ray, t_object *t_object, t_record *hit_record)
 {
-	
+	// P(t) = A + bt
+	//        A : 광선, b : 광선의 방향
+	// 이차 방정식 𝑡^2𝐛⋅𝐛+2𝑡𝐛⋅(𝐀−𝐂)+(𝐀−𝐂)⋅(𝐀−𝐂)−𝑟^2=0
+	//          at^2 + bt + c = 0
+	//          a = 𝐛⋅𝐛;
+	//          b = 2 * 𝐛⋅(𝐀−𝐂)
+	//          c = (𝐀−𝐂)⋅(𝐀−𝐂)−𝑟^2
+	double	a;
+	double	b;
+	double	c;
+	double	discriminant;
+	t_vec3	save;
+
+	a = v_dot(ray.dir, ray.dir);
+	save = v_sub(ray.origin, sphere->center); //(A-C)
+	b = 2 * v_dot(ray.dir, save);
+	c = v_dot(save, save) - pow(sphere->diameter / 2, 2);
+	discriminant = b * b - 4 * a * c;
+	if (discriminant <= 0)
+		return (0);
+	hit_record->origin = ray.origin + ray.dir * (/* 근 */);
+	hit_record->normal = 
+	hit_record->suface = 
+	return (1);
 }
 
 
@@ -13,7 +37,7 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 	if (object->type == SPHERE)
 	{
 		// 구와 만나는지 구하는 함수
-		hit_by_sphere(ray, object, hit_record);
+		return (hit_by_sphere(ray, object, hit_record));
 	}
 	else if (object->type == CYLINDER)
 	{
