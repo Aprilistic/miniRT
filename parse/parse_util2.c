@@ -102,7 +102,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	cylinder->dir_vector = parse_three_double(splited_line[2], status);
 	cylinder->diameter = atod(splited_line[3], status);
 	cylinder->height = atod(splited_line[4], status);
-	object.surface.color = parse_three_double(splited_line[3], status);
+	object.surface.color = parse_three_double(splited_line[5], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
 	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
