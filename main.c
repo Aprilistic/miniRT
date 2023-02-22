@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/22 15:47:59 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:55:20 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	print_object(t_object *object)
 		printf("sphere. \n");
 		printf("center : ");
 		print_three_doubles(&((t_sphere *)object->equation)->center);
-		printf("diameter : %lf\n", ((t_sphere *)object->equation)->diameter);
+		printf("diameter : %lf\n\n", ((t_sphere *)object->equation)->diameter);
 	}
 	else if (object->type == CYLINDER)
 	{
@@ -68,7 +68,7 @@ void	print_object(t_object *object)
 		printf("height : ");
 		printf("%lf\n", ((t_cylinder *)object->equation)->height);
 		printf("diameter : ");
-		printf("%lf\n", ((t_cylinder *)object->equation)->diameter);
+		printf("%lf\n\n", ((t_cylinder *)object->equation)->diameter);
 	}
 	else if (object->type == CONE)
 	{
@@ -77,6 +77,7 @@ void	print_object(t_object *object)
 		print_three_doubles(&((t_cone *)object->equation)->center);
 		printf("coefficient : ");
 		print_three_doubles(&((t_cone *)object->equation)->coefficient);
+		printf("\n");
 	}
 	else if (object->type == PLANE)
 	{
@@ -85,6 +86,7 @@ void	print_object(t_object *object)
 		print_three_doubles(&((t_plane *)object->equation)->point);
 		printf("dir_vector : ");
 		print_three_doubles(&((t_plane *)object->equation)->dir_vector);
+		printf("\n");
 	}
 }
 
