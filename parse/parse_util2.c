@@ -36,7 +36,11 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 	// 드디어 list에 넣기!!!
 	object.type = SPHERE;
 	object.equation = sphere;
-	add_object_hittable(&mlx->world, object);
+	if (sphere->diameter < 0
+		|| check_rgb(&object.surface.color) == ERROR)
+		*status = ERROR;
+	else if (sphere->diameter > 0)
+		add_object_hittable(&mlx->world, object);
 }
 
 // pl     0.0,0.0,-10.0    0.0,1.0,0.0   0,0,255
@@ -71,6 +75,9 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	object.type = PLANE;
 	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
+	if (v_length(plane->dir_vector) != 1
+		|| check_rgb(&object.surface.color) == ERROR)
+		*status = ERROR;
 }
 
 // cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255
@@ -95,6 +102,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	cylinder->dir_vector = parse_three_double(splited_line[2], status);
 	cylinder->diameter = atod(splited_line[3], status);
 	cylinder->height = atod(splited_line[4], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
 	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
@@ -106,6 +114,9 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	object.type = CYLINDER;
 	object.equation = cylinder;
 	add_object_hittable(&mlx->world, object);
+	if (cylinder->diameter < 0 || v_length(cylinder->dir_vector) != 1
+		|| cylinder->height < 0 || check_rgb(&object.surface.color) == ERROR)
+		*status = ERROR;
 }
 
 void	parse_cone(char **splited_line, t_mlx *mlx, int *status)
@@ -140,4 +151,6 @@ void	parse_cone(char **splited_line, t_mlx *mlx, int *status)
 	object.type = CONE;
 	object.equation = cone;
 	add_object_hittable(&mlx->world, object);
+	if (check_rgb(&object.surface.color) == ERROR)
+		*status = ERROR;
 }

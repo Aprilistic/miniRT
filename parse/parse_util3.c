@@ -13,11 +13,8 @@
 double	integer_part(char **str, int *status)
 {
 	double	integer;
-	int		sign;
 
 	// 정수부 계산
-	sign = 1 - (**str == '-') * 2;
-	*str += (sign == -1);
 	integer = 0;
 	while (**str && **str != '.')
 	{
@@ -29,7 +26,7 @@ double	integer_part(char **str, int *status)
 		integer = integer * 10 + (**str - '0');
 		(*str)++;
 	}
-	return (sign * integer);
+	return (integer);
 }
 
 double	decimal_part(char **str, int *status)
@@ -64,12 +61,20 @@ double	decimal_part(char **str, int *status)
 
 double	atod(char *str, int *status)
 {
-	return (integer_part(&str, status) + decimal_part(&str, status));
+	int	sign;
+
+	sign = 1 - (*str == '-') * 2;
+	str += (sign == -1);
+	return (sign * (integer_part(&str, status) + decimal_part(&str, status)));
 }
 
 double	parse_atod(char **str, int *status)
 {
-	return (integer_part(str, status) + decimal_part(str, status));
+	int	sign;
+
+	sign = 1 - (**str == '-') * 2;
+	*str += (sign == -1);
+	return (sign * (integer_part(str, status) + decimal_part(str, status)));
 }
 
 t_vec3	parse_three_double(char *str, int *status)
@@ -82,15 +87,12 @@ t_vec3	parse_three_double(char *str, int *status)
 		str++;
 		*status = OK;
 	}
-
 	var.e[1] = parse_atod(&str, status);
 	if (*status == ERROR && *str == ',')
 	{
 		str++;
 		*status = OK;
 	}
-
 	var.e[2] = parse_atod(&str, status);
-
 	return (var);
 }

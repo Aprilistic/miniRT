@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/22 16:43:42 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:10:34 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "argc error\n", 11);
+		write(2, "argc Error\n", 11);
 		return (0);
 	}
 
 	// parse .rt file
 	if (check_filename(argv[1]) == ERROR || parse(argv[1], &mlx) == ERROR)
 	{
-		write(2, ".rt error\n", 10);
+		write(2, ".rt Error\n", 10);
 		return (0);
 	}
 

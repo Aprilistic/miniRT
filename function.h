@@ -51,6 +51,7 @@ double	parse_atod(char **str, int *status);
 double	integer_part(char **str, int *status);
 double	decimal_part(char **str, int *status);
 t_vec3	parse_three_double(char *str, int *status);
+int		check_rgb(t_color *color);
 
 /*  our_mlx functions  */
 void	init_mlx(t_mlx *mlx);
