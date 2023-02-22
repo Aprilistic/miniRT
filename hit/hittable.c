@@ -1,5 +1,5 @@
-#include "struct.h"
-#include "function.h"
+#include "../struct.h"
+#include "../function.h"
 
 void	init_hittable(t_hittable *world)
 {
