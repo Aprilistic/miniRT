@@ -38,6 +38,13 @@ double	clamp(double d, double min, double max)
 	return (d);
 }
 
+void	limit_color_brightness(t_color *color)
+{
+	color->e[0] = clamp(color->e[0], 0, 255.99);
+	color->e[1] = clamp(color->e[1], 0, 255.99);
+	color->e[2] = clamp(color->e[2], 0, 255.99);
+}
+
 double	attenuation(t_point3 start, t_point3 end)
 {
 	double	dist;
@@ -91,6 +98,7 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		sum = v_add(diffuse, common);
 		sum = v_mul(sum, get_surface_color(&hit_record));
 		sum = v_add(sum, specular);
+		limit_color_brightness(&sum);
 		return (v_mul_scalar(sum, attenuation(ray.origin, hit_record.origin)));
 	}
 	else
