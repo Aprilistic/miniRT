@@ -1,6 +1,6 @@
-#include "../struct.h"
-#include "../macro.h"
-#include "../function.h"
+#include "struct.h"
+#include "macro.h"
+#include "function.h"
 #include <stdlib.h>
 #include <fcntl.h>
 // 15.235
@@ -13,8 +13,11 @@
 double	integer_part(char **str, int *status)
 {
 	double	integer;
+	int		sign;
 
 	// 정수부 계산
+	sign = 1 - (**str == '-') * 2;
+	*str += (sign == -1);
 	integer = 0;
 	while (**str && **str != '.')
 	{
@@ -26,7 +29,7 @@ double	integer_part(char **str, int *status)
 		integer = integer * 10 + (**str - '0');
 		(*str)++;
 	}
-	return (integer);
+	return (sign * integer);
 }
 
 double	decimal_part(char **str, int *status)

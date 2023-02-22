@@ -60,9 +60,8 @@ typedef struct s_record
 
 typedef struct s_cone
 {
-	t_point3	point;
-	double		height;
-	double		diameter;
+	t_point3	center;
+	t_point3	coefficient; // 계수
 }				t_cone;
 
 typedef struct s_plane

@@ -6,13 +6,13 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:37:23 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/21 22:06:09 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:41:34 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../struct.h"
-#include "../function.h"
-#include "../macro.h"
+#include "struct.h"
+#include "function.h"
+#include "macro.h"
 
 t_vec3	v_init(double e0, double e1, double e2)
 {

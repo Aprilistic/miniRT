@@ -6,13 +6,13 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 20:45:10 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/21 22:05:39 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:52:33 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../struct.h"
-#include "../function.h"
-#include "../macro.h"
+#include "struct.h"
+#include "function.h"
+#include "macro.h"
 
 t_vec3	v_mul(t_vec3 left, t_vec3 right)
 {

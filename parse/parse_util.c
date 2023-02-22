@@ -1,6 +1,6 @@
-#include "../struct.h"
-#include "../macro.h"
-#include "../function.h"
+#include "struct.h"
+#include "macro.h"
+#include "function.h"
 #include <stdlib.h>
 #include <fcntl.h>
 
@@ -83,7 +83,9 @@ void	parse_light(char **splited_line, t_mlx *mlx
 		*status = ERROR;
 		return ;
 	}
-	light.origin = parse_three_double();
-	// atod 음수도 처리, .....
+	light.origin = parse_three_double(&splited_line[1], status);
+	brightness = atod(&splited_line[2], status);
+	light.color = parse_three_double(&splited_line[3], status);
+	add_light_hittable(mlx->world, light);
 	was_here = 1;
 }

@@ -1,11 +1,11 @@
 #ifndef FUNCTION_H
 # define FUNCTION_H
 # include "libft/libft.h"
+# include "struct.h"
 # include <stdio.h>
+# include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
-# include "struct.h"
 
 /*	t_vec3 */
 /* initialize */
