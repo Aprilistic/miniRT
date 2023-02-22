@@ -1,9 +1,9 @@
 #ifndef FUNCTION_H
 # define FUNCTION_H
 # include "libft/libft.h"
+# include "mlx/mlx.h"
 # include "struct.h"
 # include <stdio.h>
-# include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
 
