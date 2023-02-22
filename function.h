@@ -46,10 +46,11 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status);
 void	parse_plane(char **splited_line, t_mlx *mlx, int *status);
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status);
 void	parse_cone(char **splited_line, t_mlx *mlx, int *status);
-double	atod(char **str, int *status);
+double	atod(char *str, int *status);
+double	parse_atod(char **str, int *status);
 double	integer_part(char **str, int *status);
 double	decimal_part(char **str, int *status);
-t_vec3	parse_three_double(char **str, int *status);
+t_vec3	parse_three_double(char *str, int *status);
 
 /*  our_mlx functions  */
 void	init_mlx(t_mlx *mlx);

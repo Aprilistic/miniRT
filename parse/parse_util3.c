@@ -24,7 +24,7 @@ double	integer_part(char **str, int *status)
 		if (!ft_isdigit(**str))
 		{
 			*status = ERROR;
-			return (0);
+			break ;
 		}
 		integer = integer * 10 + (**str - '0');
 		(*str)++;
@@ -39,11 +39,12 @@ double	decimal_part(char **str, int *status)
 
 	// "123." 만 들어왔을 때 처리
 	// 여기서 str++이 된다. 그래서 .을 넘어간다.
-	if (*((*str)++) == '.' && **str == '\0')
+	if (**str == '.' && *(*str + 1) == '\0')
 	{
 		*status = ERROR;
 		return (0);
 	}
+	*str += (**str == '.');
 	// 소수부 계산
 	decimal = 0;
 	division_num = 0;
@@ -52,7 +53,7 @@ double	decimal_part(char **str, int *status)
 		if (!ft_isdigit(**str))
 		{
 			*status = ERROR;
-			return (0);
+			break ;
 		}
 		decimal = decimal * 10 + (**str - '0');
 		division_num++;
@@ -61,21 +62,35 @@ double	decimal_part(char **str, int *status)
 	return (decimal / pow(10, division_num));
 }
 
-double	atod(char **str, int *status)
+double	atod(char *str, int *status)
+{
+	return (integer_part(&str, status) + decimal_part(&str, status));
+}
+
+double	parse_atod(char **str, int *status)
 {
 	return (integer_part(str, status) + decimal_part(str, status));
 }
 
-t_vec3	parse_three_double(char **str, int *status)
+t_vec3	parse_three_double(char *str, int *status)
 {
 	t_vec3	var;
 
-	var.e[0] = atod(str, status);
-	if (*status == ERROR && **str == ',')
+	var.e[0] = parse_atod(&str, status);
+	if (*status == ERROR && *str == ',')
+	{
+		str++;
 		*status = OK;
-	var.e[1] = atod(str, status);
-	if (*status == ERROR && **str == ',')
+	}
+
+	var.e[1] = parse_atod(&str, status);
+	if (*status == ERROR && *str == ',')
+	{
+		str++;
 		*status = OK;
-	var.e[2] = atod(str, status);
+	}
+
+	var.e[2] = parse_atod(&str, status);
+
 	return (var);
 }

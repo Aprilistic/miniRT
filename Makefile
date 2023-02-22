@@ -6,7 +6,7 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/22 14:20:43 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/22 14:50:46 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS	= $(SRCS:.c=.o)
 INCLUDES = includes/
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -I.
+CFLAGS	= -Wall -Werror -Wextra -I. -g
 CLIB	= -lmlx -Lmlx -framework OpenGL -framework Appkit
 
 

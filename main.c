@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/21 20:31:53 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:47:59 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,77 @@ int	check_filename(char *filename)
 	return (ERROR);
 }
 
+void	print_three_doubles(t_vec3 *num)
+{
+	printf("%lf,%lf,%lf\n", num->e[0], num->e[1], num->e[2]);
+}
+
+void	print_object(t_object *object)
+{
+	if (object->type == SPHERE)
+	{
+		printf("sphere. \n");
+		printf("center : ");
+		print_three_doubles(&((t_sphere *)object->equation)->center);
+		printf("diameter : %lf\n", ((t_sphere *)object->equation)->diameter);
+	}
+	else if (object->type == CYLINDER)
+	{
+		printf("cylider. \n");
+		printf("point : ");
+		print_three_doubles(&((t_cylinder *)object->equation)->point);
+		printf("dir : ");
+		print_three_doubles(&((t_cylinder *)object->equation)->dir_vector);
+		printf("height : ");
+		printf("%lf\n", ((t_cylinder *)object->equation)->height);
+		printf("diameter : ");
+		printf("%lf\n", ((t_cylinder *)object->equation)->diameter);
+	}
+	else if (object->type == CONE)
+	{
+		printf("cone. \n");
+		printf("center : ");
+		print_three_doubles(&((t_cone *)object->equation)->center);
+		printf("coefficient : ");
+		print_three_doubles(&((t_cone *)object->equation)->coefficient);
+	}
+	else if (object->type == PLANE)
+	{
+		printf("plane. \n");
+		printf("point : ");
+		print_three_doubles(&((t_plane *)object->equation)->point);
+		printf("dir_vector : ");
+		print_three_doubles(&((t_plane *)object->equation)->dir_vector);
+	}
+}
+
+void	debug_parsing(t_mlx *mlx)
+{
+	printf("=== camera ===\n");
+	printf("dir : ");
+	print_three_doubles(&mlx->camera.dir);
+	printf("origin : ");
+	print_three_doubles(&mlx->camera.origin);
+	printf("fov : %d\n", mlx->fov);
+	printf("=================\n\n");
+	
+	printf("=== light ===\n");
+	for (int i = 0; i < mlx->world.cur_light_count; i++)
+	{
+		printf("%d. \n", i + 1);
+		printf("origin : ");
+		print_three_doubles(&mlx->world.light->origin);
+		printf("color : ");
+		print_three_doubles(&mlx->world.light->color);
+	}
+	printf("=================\n\n");
+
+	printf("=== objects ===\n");
+	for (int i = 0; i < mlx->world.cur_object_count; i++)
+		print_object(&mlx->world.object[i]);
+	printf("=================\n\n");
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
@@ -60,6 +131,9 @@ int	main(int argc, char **argv)
 		write(2, ".rt error\n", 10);
 		return (0);
 	}
+
+	// debug parsing part
+	debug_parsing(&mlx);
 
 	// make ray tracing!
 	init_mlx(&mlx);

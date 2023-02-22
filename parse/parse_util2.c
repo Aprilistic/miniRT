@@ -23,15 +23,15 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	sphere = malloc(sizeof(t_sphere));
-	sphere->center = parse_three_double(&splited_line[1], status);
-	sphere->diameter = atod(&splited_line[2], status);
-	object.surface.color = parse_three_double(&splited_line[3], status);
+	sphere->center = parse_three_double(splited_line[1], status);
+	sphere->diameter = atod(splited_line[2], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(&splited_line[4], status) != 0);
-	// object.surface.diffuse_rate = atod(&splited_line[5], status);
-	// object.surface.specular_rate = atod(&splited_line[6], status);
-	// object.surface.brightness_rate = atod(&splited_line[7], status);
+	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[5], status);
+	// object.surface.specular_rate = atod(splited_line[6], status);
+	// object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = SPHERE;
@@ -57,15 +57,15 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	plane = malloc(sizeof(t_plane));
-	plane->point = parse_three_double(&splited_line[1], status);
-	plane->dir_vector = parse_three_double(&splited_line[2], status);
-	object.surface.color = parse_three_double(&splited_line[3], status);
+	plane->point = parse_three_double(splited_line[1], status);
+	plane->dir_vector = parse_three_double(splited_line[2], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(&splited_line[4], status) != 0);
-	// object.surface.diffuse_rate = atod(&splited_line[5], status);
-	// object.surface.specular_rate = atod(&splited_line[6], status);
-	// object.surface.brightness_rate = atod(&splited_line[7], status);
+	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[5], status);
+	// object.surface.specular_rate = atod(splited_line[6], status);
+	// object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = PLANE;
@@ -84,23 +84,23 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	while (splited_line[field_cnt])
 		field_cnt++;
 	// 아직은 옵션 처리 안 함
-	if (field_cnt != ARG_CNT + 1)
+	if (field_cnt != ARG_CNT + 2)
 	{
 		*status = ERROR;
 		return ;
 	}
 
 	cylinder = malloc(sizeof(t_cylinder));
-	cylinder->point = parse_three_double(&splited_line[1], status);
-	cylinder->dir_vector = parse_three_double(&splited_line[2], status);
-	cylinder->diameter = atod(&splited_line[3], status);
-	cylinder->height = atod(&splited_line[4], status);
+	cylinder->point = parse_three_double(splited_line[1], status);
+	cylinder->dir_vector = parse_three_double(splited_line[2], status);
+	cylinder->diameter = atod(splited_line[3], status);
+	cylinder->height = atod(splited_line[4], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(&splited_line[5], status) != 0);
-	// object.surface.diffuse_rate = atod(&splited_line[6], status);
-	// object.surface.specular_rate = atod(&splited_line[7], status);
-	// object.surface.brightness_rate = atod(&splited_line[8], status);
+	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[6], status);
+	// object.surface.specular_rate = atod(splited_line[7], status);
+	// object.surface.brightness_rate = atod(splited_line[8], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = CYLINDER;
@@ -126,15 +126,15 @@ void	parse_cone(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	cone = malloc(sizeof(t_cone));
-	cone->center = parse_three_double(&splited_line[1], status);
-	cone->coefficient = parse_three_double(&splited_line[2], status);
-	object.surface.color = parse_three_double(&splited_line[3], status);
+	cone->center = parse_three_double(splited_line[1], status);
+	cone->coefficient = parse_three_double(splited_line[2], status);
+	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(&splited_line[5], status) != 0);
-	// object.surface.diffuse_rate = atod(&splited_line[6], status);
-	// object.surface.specular_rate = atod(&splited_line[7], status);
-	// object.surface.brightness_rate = atod(&splited_line[8], status);
+	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
+	// object.surface.diffuse_rate = atod(splited_line[6], status);
+	// object.surface.specular_rate = atod(splited_line[7], status);
+	// object.surface.brightness_rate = atod(splited_line[8], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = CONE;
