@@ -6,17 +6,16 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/23 16:52:43 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/23 19:44:59 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= miniRT
 
 SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c \
-			parse/parse.c parse/parse_util.c parse/parse_util2.c parse/parse_util3.c \
-			hit/hittable.c
+		parse/parse.c parse/parse_util.c parse/parse_util2.c parse/parse_util3.c \
+		hit/hittable.c camera.c ray.c hit/hit.c reflection.c
 OBJS	= $(SRCS:.c=.o)
-INCLUDES = includes/
 
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra -I.

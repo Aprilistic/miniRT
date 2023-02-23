@@ -53,4 +53,5 @@ void	make_image(t_mlx *mlx)
 						&mlx->world, REFLECTION_CNT)));
 		}
 	}
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 }

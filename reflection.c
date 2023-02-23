@@ -20,6 +20,7 @@ t_ray	diffuse_ray(t_ray incident, t_record hit_record)
 	t_ray	ret;
 	t_vec3	random_unit_vec;
 
+	incident.origin = v_init(0, 0, 0);
 	ret.origin = hit_record.origin;
 	random_unit_vec = v_init(random_double(-1, 1), random_double(-1, 1),
 			random_double(-1, 1));

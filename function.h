@@ -74,4 +74,7 @@ t_ray	specular_ray(t_ray incident, t_record hit_record);
 /*	camera default value setting	*/
 void	make_image(t_mlx *mlx);
 
+/* hit function */
+int		hit(t_ray ray, t_hittable *world, t_record *hit_record);
+
 #endif

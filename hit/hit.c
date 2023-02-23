@@ -76,11 +76,14 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 		// 면과 만나는지 구하는 함수
 		// return (hit_by_plane(ray, object, hit_record));
 	}
+	return (0);
 }
 
-void	update_hit_record(t_record *main, t_record *cmp)
+void	update_hit_record(t_ray *ray, t_record *main, t_record *cmp)
 {
 	// main보다 cmp가 가깝다면
+	if (v_length_squared(v_sub(ray->origin, main->origin))
+		> v_length_squared(v_sub(ray->origin, cmp->origin)))
 		*main = *cmp;
 }
 
@@ -96,7 +99,7 @@ int	hit(t_ray ray, t_hittable *world, t_record *hit_record)
 	{
 		if (hit_by_object(ray, &world->object[index], &cmp))
 		{
-			update_hit_record(&hit_record, &cmp);
+			update_hit_record(&ray, hit_record, &cmp);
 			hit_surface = 1;
 		}
 		index++;

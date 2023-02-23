@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/23 16:54:15 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:39:16 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int	main(int argc, char **argv)
 	debug_parsing(&mlx);
 	// make ray tracing!
 	init_mlx(&mlx);
-	make_ray_tracing(&mlx);
+	make_image(&mlx);
 	// mlx_loop()!
 	minirt_hook(&mlx);
 	mlx_loop(mlx.mlx_ptr);
