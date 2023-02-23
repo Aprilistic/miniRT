@@ -4,7 +4,7 @@
 # define INF 1e9
 # define PI 3.14159265359
 
-# define REFLECTION_CNT 5
+# define REFLECTION_CNT 1
 
 /* parsing macros */
 # define S_AMBIENT "A"

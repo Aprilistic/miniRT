@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/23 19:39:16 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/23 20:11:12 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ void	debug_parsing(t_mlx *mlx)
 	print_three_doubles(&mlx->camera.origin);
 	printf("fov : %d\n", mlx->camera.fov);
 	printf("=================\n\n");
+
+	printf("=== ambiance ===\n");
+	print_three_doubles(&mlx->world.ambiance);
+	printf("=================\n\n");
+
 	printf("=== light ===\n");
 	for (int i = 0; i < mlx->world.cur_light_count; i++)
 	{
@@ -109,6 +114,7 @@ void	debug_parsing(t_mlx *mlx)
 		print_three_doubles(&mlx->world.light->color);
 	}
 	printf("=================\n\n");
+
 	printf("=== objects ===\n");
 	for (int i = 0; i < mlx->world.cur_object_count; i++)
 		print_object(&mlx->world.object[i]);
