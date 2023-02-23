@@ -57,9 +57,9 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 	was_here = 1;
 	mlx->camera.origin = parse_three_double(splited_line[1], status);
 	mlx->camera.dir = parse_three_double(splited_line[2], status);
-	mlx->fov = atod(splited_line[3], status);
+	mlx->camera.fov = atod(splited_line[3], status);
 	if (v_length(mlx->camera.dir) != 1
-		|| !(0 <= mlx->fov && mlx->fov <= 180))
+		|| !(0 <= mlx->camera.fov && mlx->camera.fov <= 180))
 		*status = ERROR;
 }
 

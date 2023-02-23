@@ -110,7 +110,6 @@ typedef struct s_mlx
 	t_data		img;
 	t_hittable	world; // object, ambiance, light
 	t_camera	camera; // camera
-	int			fov;
 }				t_mlx;
 
 #endif
