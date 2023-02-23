@@ -24,7 +24,12 @@ t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y)
 	return (v_add(x_dir, y_dir));
 }
 
-void	make_image(t_camera *camera, t_hittable *world)
+int	create_rgb(t_color color)
+{
+	return ((int)color.e[0] << 16 | (int)color.e[1] << 8 | (int)color.e[2]);
+}
+
+void	make_image(t_mlx *mlx)
 {
 	t_vec3	u;
 	t_vec3	v;
@@ -32,19 +37,20 @@ void	make_image(t_camera *camera, t_hittable *world)
 	int		y;
 	t_ray	pixel;
 
-	u = v_unit(v_cross(v_init(0, 1, 0), camera->dir));
-	v = v_unit(v_cross(camera->dir, u));
+	u = v_unit(v_cross(v_init(0, 1, 0), mlx->camera.dir));
+	v = v_unit(v_cross(mlx->camera.dir, u));
 	y = -1;
 	while (++y < Y_SIZE)
 	{
 		x = -1;
 		while (++x < X_SIZE)
 		{
-			pixel.origin = camera->origin;
-			pixel.dir = v_add(focal_vector(camera),
+			pixel.origin = mlx->camera.origin;
+			pixel.dir = v_add(focal_vector(&mlx->camera),
 					cam_offset_vector(&u, &v, x, y));
 			pixel.dir = v_unit(pixel.dir);
-			ray_color(pixel, world, REFLECTION_CNT);
+			my_mlx_pixel_put(&mlx->img, x, y, create_rgb(ray_color(pixel,
+						&mlx->world, REFLECTION_CNT)));
 		}
 	}
 }
