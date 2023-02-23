@@ -1,6 +1,7 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+#include "macro.h"
 typedef struct s_vec3
 {
 	double		e[3];
@@ -13,7 +14,14 @@ typedef struct s_ray
 	t_vec3		dir;
 	t_point3	origin;
 }				t_ray;
-typedef t_ray	t_camera;
+
+typedef struct	s_camera
+{
+	t_vec3		dir;
+	t_point3	origin;
+	int			fov;
+	t_vec3		ray[Y_SIZE][X_SIZE];
+}	t_camera;
 
 typedef struct s_texture
 {
