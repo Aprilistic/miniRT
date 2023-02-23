@@ -26,7 +26,7 @@ t_color	get_surface_color(t_record *hit_record)
 	}
 	else
 		return (v_mul_scalar(hit_record->suface.color,
-				1 + hit_record->suface.brightness_rate));
+								1 + hit_record->suface.brightness_rate));
 }
 
 double	clamp(double d, double min, double max)
@@ -70,9 +70,13 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 		incident.origin = point->origin;
 		incident.dir = v_unit(v_sub(world->light[index].origin, point->origin));
 		if (hit(incident, world, &hit_record))
-			if (v_length_squared(v_sub(hit_record.origin, point->origin)) < v_length_squared(v_sub(world->light[index].origin, point->origin)))
+			if (v_length_squared(v_sub(hit_record.origin,
+						point->origin)) < v_length_squared(v_sub(world->light[index].origin,
+						point->origin)))
 				continue ;
-		incident_color = v_mul_scalar(world->light[index].color, sin(acos(v_dot(point->normal, incident.dir))) * attenuation(point->origin, world->light[index].origin));
+		incident_color = v_mul_scalar(world->light[index].color,
+				sin(acos(v_dot(point->normal, incident.dir)))
+				* attenuation(point->origin, world->light[index].origin));
 		ret = v_add(ret, incident_color);
 	}
 	return (ret);

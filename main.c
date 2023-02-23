@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
 #include "function.h"
 #include "macro.h"
+#include "struct.h"
 
 void	make_ray_tracing(t_mlx *mlx)
 {
@@ -38,8 +38,8 @@ int	check_filename(char *filename)
 	int	len;
 
 	len = ft_strlen(filename);
-	if ((len >= 3) && (filename[len - 3] == '.'
-		&& filename[len - 2] == 'r' && filename[len - 1] == 't'))
+	if ((len >= 3) && (filename[len - 3] == '.' && filename[len - 2] == 'r'
+			&& filename[len - 1] == 't'))
 		return (OK);
 	return (ERROR);
 }
@@ -99,7 +99,6 @@ void	debug_parsing(t_mlx *mlx)
 	print_three_doubles(&mlx->camera.origin);
 	printf("fov : %d\n", mlx->camera.fov);
 	printf("=================\n\n");
-	
 	printf("=== light ===\n");
 	for (int i = 0; i < mlx->world.cur_light_count; i++)
 	{
@@ -110,7 +109,6 @@ void	debug_parsing(t_mlx *mlx)
 		print_three_doubles(&mlx->world.light->color);
 	}
 	printf("=================\n\n");
-
 	printf("=== objects ===\n");
 	for (int i = 0; i < mlx->world.cur_object_count; i++)
 		print_object(&mlx->world.object[i]);
@@ -134,24 +132,19 @@ int	main(int argc, char **argv)
 		print_error("Error: wrong argument count\n");
 		return (0);
 	}
-
 	// parse .rt file
 	if (check_filename(argv[1]) == ERROR || parse(argv[1], &mlx) == ERROR)
 	{
 		print_error("Error: wrong .rt file\n");
 		return (0);
 	}
-
 	// debug parsing part
 	debug_parsing(&mlx);
-
 	// make ray tracing!
 	init_mlx(&mlx);
 	make_ray_tracing(&mlx);
-
 	// mlx_loop()!
 	minirt_hook(&mlx);
 	mlx_loop(mlx.mlx_ptr);
-
 	return (0);
 }

@@ -3,9 +3,9 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include "struct.h"
-# include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 
 /*	t_vec3 */
 /* initialize */
@@ -36,12 +36,12 @@ t_ray	specular_ray(t_ray incident, t_record hit_record);
 int		parse(char *file, t_mlx *mlx);
 int		parse_object(char *line, t_mlx *mlx, int *cap_status);
 void	free_two_dimension(char **to_free);
-void	parse_ambient(char **splited_line, t_mlx *mlx
-						, int *status, int *cap_status);
-void	parse_camera(char **splited_line, t_mlx *mlx
-						, int *status, int *cap_status);
-void	parse_light(char **splited_line, t_mlx *mlx
-						, int *status, int *cap_status);
+void	parse_ambient(char **splited_line, t_mlx *mlx, int *status,
+		int *cap_status);
+void	parse_camera(char **splited_line, t_mlx *mlx, int *status,
+		int *cap_status);
+void	parse_light(char **splited_line, t_mlx *mlx, int *status,
+		int *cap_status);
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *status);
 void	parse_plane(char **splited_line, t_mlx *mlx, int *status);
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status);

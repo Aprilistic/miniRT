@@ -1,7 +1,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "macro.h"
+# include "macro.h"
+
 typedef struct s_vec3
 {
 	double		e[3];
@@ -15,12 +16,12 @@ typedef struct s_ray
 	t_point3	origin;
 }				t_ray;
 
-typedef struct	s_camera
+typedef struct s_camera
 {
 	t_vec3		dir;
 	t_point3	origin;
 	int			fov;
-}	t_camera;
+}				t_camera;
 
 typedef struct s_texture
 {
@@ -68,7 +69,7 @@ typedef struct s_record
 typedef struct s_cone
 {
 	t_point3	center;
-	t_point3	coefficient; // 계수
+	t_point3 coefficient; // 계수
 }				t_cone;
 
 typedef struct s_plane
@@ -107,8 +108,8 @@ typedef struct s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_data		img;
-	t_hittable	world; // object, ambiance, light
-	t_camera	camera; // camera
+	t_hittable world; // object, ambiance, light
+	t_camera camera;  // camera
 }				t_mlx;
 
 #endif

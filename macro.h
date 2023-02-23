@@ -1,10 +1,10 @@
 #ifndef MACRO_H
 # define MACRO_H
 
-# define INF	1e9
-# define PI		3.14159265359
+# define INF 1e9
+# define PI 3.14159265359
 
-# define REFLECTION_CNT	5
+# define REFLECTION_CNT 5
 
 /* parsing macros */
 # define S_AMBIENT "A"
@@ -18,6 +18,7 @@
 # define OK 0
 # define ERROR -1
 # define CAP_CNT 3
+
 enum	e_idx
 {
 	LINE,
@@ -46,11 +47,12 @@ enum	e_mouse
 };
 
 /* shape macros */
-enum e_type {
-  CONE,
-  PLANE,
-  SPHERE,
-  CYLINDER,
+enum	e_type
+{
+	CONE,
+	PLANE,
+	SPHERE,
+	CYLINDER,
 };
 
 #endif

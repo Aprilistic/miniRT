@@ -1,5 +1,5 @@
-#include "../struct.h"
 #include "../function.h"
+#include "../struct.h"
 
 void	init_hittable(t_hittable *world)
 {
@@ -20,7 +20,8 @@ void	resize_hittable(t_hittable *world, int is_object)
 	{
 		world->max_object_count *= 2;
 		resized_object = ft_calloc(world->max_object_count, sizeof(t_object));
-		ft_memcpy(resized_object, world->object, world->max_object_count / 2 * sizeof(t_object));
+		ft_memcpy(resized_object, world->object, world->max_object_count / 2
+			* sizeof(t_object));
 		free(world->object);
 		world->object = resized_object;
 	}
@@ -28,7 +29,8 @@ void	resize_hittable(t_hittable *world, int is_object)
 	{
 		world->max_light_count *= 2;
 		resized_light = ft_calloc(world->max_light_count, sizeof(t_object));
-		ft_memcpy(resized_light, world->light, world->max_light_count / 2 * sizeof(t_object));
+		ft_memcpy(resized_light, world->light, world->max_light_count / 2
+			* sizeof(t_object));
 		free(world->light);
 		world->light = resized_light;
 	}
