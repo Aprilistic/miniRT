@@ -1,4 +1,5 @@
 #include "function.h"
+#include "macro.h"
 #include "struct.h"
 #include <math.h>
 #include <stdlib.h>
@@ -48,11 +49,9 @@ void	limit_color_brightness(t_color *color)
 double	attenuation(t_point3 start, t_point3 end)
 {
 	double	dist;
-	double	coefficient;
 
 	dist = v_length(v_sub(start, end));
-	coefficient = 10;
-	return (clamp(coefficient / dist, 0.0, 1.0));
+	return (clamp(LIGHT_ATTENUATION / dist, 0.0, 1.0));
 }
 
 t_color	light_from_spot(t_record *point, t_hittable *world)

@@ -5,6 +5,7 @@
 # define PI 3.14159265359
 
 # define REFLECTION_CNT 1
+# define LIGHT_ATTENUATION	15.0
 
 /* parsing macros */
 # define S_AMBIENT "A"
