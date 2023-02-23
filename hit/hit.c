@@ -23,6 +23,7 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	//          b = 2 * 𝐛⋅(𝐀−𝐂)
 	//          c = (𝐀−𝐂)⋅(𝐀−𝐂)−𝑟^2
 	// 
+	// printf("ray.origin : %lf, %lf, %lf\n", ray.origin.e[0], ray.origin.e[1], ray.origin.e[2]);
 	double		root[2];
 	double		coefft[3];
 	double		discriminant;
@@ -37,8 +38,8 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	discriminant = coefft[1] * coefft[1] - 4 * coefft[0] * coefft[2];
 	if (discriminant <= 0)
 		return (0);
-	root[0] = (-coefft[1] - sqrt(discriminant)) / 2.0 * coefft[0];
-	root[1] = (-coefft[1] + sqrt(discriminant)) / 2.0 * coefft[0];
+	root[0] = (-coefft[1] - sqrt(discriminant)) / (2.0 * coefft[0]);
+	root[1] = (-coefft[1] + sqrt(discriminant)) / (2.0 * coefft[0]);
 	set_closer_point(root, &ray, hit_record);
 	hit_record->normal = v_unit(v_sub(hit_record->origin, sphere->center));
 	hit_record->suface = object->surface;

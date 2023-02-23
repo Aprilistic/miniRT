@@ -9,8 +9,9 @@ t_vec3	focal_vector(t_camera *camera)
 	t_vec3	dir;
 
 	dir = v_unit(camera->dir);
-	dir = v_mul_scalar(dir, asin(camera->fov / 2.0) * X_SIZE / 2
-			* cos(camera->fov / 2.0));
+	// dir = v_mul_scalar(dir, asin(camera->fov / 2.0) * X_SIZE / 2
+	// 		* cos(camera->fov / 2.0));
+	dir = v_mul_scalar(camera->dir, atan(camera->fov / 2.0) * (X_SIZE / 2));
 	return (dir);
 }
 
@@ -26,6 +27,7 @@ t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y)
 
 int	create_rgb(t_color color)
 {
+	// printf("%d, %d, %d\n", (int)color.e[0], (int)color.e[1], (int)color.e[2]);
 	return ((int)color.e[0] << 16 | (int)color.e[1] << 8 | (int)color.e[2]);
 }
 

@@ -43,7 +43,7 @@ int	parse_object(char *line, t_mlx *mlx, int *cap_status)
 		parse_cylinder(splited_line, mlx, &status);
 	else if (ft_strcmp(splited_line[0], S_CONE) == OK)
 		parse_cone(splited_line, mlx, &status);
-	else
+	else if (ft_strcmp(splited_line[0], "#") != OK)
 		status = ERROR;
 	free_two_dimension(splited_line);
 	return (status);
