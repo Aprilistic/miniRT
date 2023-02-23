@@ -2,6 +2,7 @@
 # define MACRO_H
 
 # define INF	1e9
+# define PI		3.14159265359
 
 /* parsing macros */
 # define S_AMBIENT "A"
