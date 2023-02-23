@@ -97,7 +97,7 @@ void	debug_parsing(t_mlx *mlx)
 	print_three_doubles(&mlx->camera.dir);
 	printf("origin : ");
 	print_three_doubles(&mlx->camera.origin);
-	printf("fov : %d\n", mlx->fov);
+	printf("fov : %d\n", mlx->camera.fov);
 	printf("=================\n\n");
 	
 	printf("=== light ===\n");
