@@ -62,7 +62,7 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 
 	plane = malloc(sizeof(t_plane));
 	plane->point = parse_three_double(splited_line[1], status);
-	plane->dir_vector = parse_three_double(splited_line[2], status);
+	plane->normal = parse_three_double(splited_line[2], status);
 	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
@@ -75,7 +75,7 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	object.type = PLANE;
 	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
-	if (v_length(plane->dir_vector) != 1
+	if (v_length(plane->normal) != 1
 		|| check_rgb(&object.surface.color) == ERROR)
 		*status = ERROR;
 }

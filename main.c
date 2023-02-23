@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/22 20:49:30 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:54:15 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	print_object(t_object *object)
 		printf("point : ");
 		print_three_doubles(&((t_plane *)object->equation)->point);
 		printf("dir_vector : ");
-		print_three_doubles(&((t_plane *)object->equation)->dir_vector);
+		print_three_doubles(&((t_plane *)object->equation)->normal);
 		printf("\n");
 	}
 }

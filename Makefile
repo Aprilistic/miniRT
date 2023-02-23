@@ -6,7 +6,7 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/22 14:50:46 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/23 16:52:43 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS	= $(SRCS:.c=.o)
 INCLUDES = includes/
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -I. -g
+CFLAGS	= -Wall -Werror -Wextra -I.
 CLIB	= -lmlx -Lmlx -framework OpenGL -framework Appkit
 
 
@@ -34,7 +34,7 @@ $(NAME)	: $(OBJS)
 		@echo "compiling mlx..."
 		@make all -s -C mlx 2> /dev/null
 		@echo "compiling all..."
-		@$(CC) $(CFLAGS) $(CLIB) $(SRCS) libft/libft.a -I $(INCLUDES) -o $(NAME)
+		@$(CC) $(CFLAGS) $(CLIB) $(OBJS) libft/libft.a -o $(NAME)
 		@echo "done!"
 
 clean	:

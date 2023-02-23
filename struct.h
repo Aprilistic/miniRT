@@ -75,7 +75,7 @@ typedef struct s_cone
 typedef struct s_plane
 {
 	t_point3	point;
-	t_vec3		dir_vector;
+	t_vec3		normal;
 }				t_plane;
 
 typedef struct s_sphere

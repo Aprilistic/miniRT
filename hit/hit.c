@@ -45,6 +45,15 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	return (1);
 }
 
+// int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
+// {
+// 	double		root[2];
+// 	t_plane		*plane;
+// 	t_vec3		save;
+
+// 	plane = (t_plane *)(object)->equation;
+// 	return (1);
+// }
 
 // 각 타입에 따라서 만나는 지점을 구하는 함수로 들어간다.
 int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
@@ -65,6 +74,7 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 	else if (object->type == PLANE)
 	{
 		// 면과 만나는지 구하는 함수
+		// return (hit_by_plane(ray, object, hit_record));
 	}
 }
 
