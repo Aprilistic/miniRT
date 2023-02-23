@@ -20,7 +20,6 @@ typedef struct	s_camera
 	t_vec3		dir;
 	t_point3	origin;
 	int			fov;
-	t_vec3		ray[Y_SIZE][X_SIZE];
 }	t_camera;
 
 typedef struct s_texture

@@ -72,6 +72,6 @@ t_ray	diffuse_ray(t_ray incident, t_record hit_record);
 t_ray	specular_ray(t_ray incident, t_record hit_record);
 
 /*	camera default value setting	*/
-void	set_camera(t_camera *camera);
+void	make_image(t_camera *camera, t_hittable *world);
 
 #endif

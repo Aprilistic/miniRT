@@ -24,12 +24,13 @@ t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y)
 	return (v_add(x_dir, y_dir));
 }
 
-void	set_camera(t_camera *camera)
+void	make_image(t_camera *camera, t_hittable *world)
 {
 	t_vec3	u;
 	t_vec3	v;
 	int		x;
 	int		y;
+	t_ray	pixel;
 
 	u = v_unit(v_cross(v_init(0, 1, 0), camera->dir));
 	v = v_unit(v_cross(camera->dir, u));
@@ -39,10 +40,11 @@ void	set_camera(t_camera *camera)
 		x = -1;
 		while (++x < X_SIZE)
 		{
-			camera->ray[y][x].origin = camera->origin;
-			camera->ray[y][x].dir = v_add(focal_vector(camera),
+			pixel.origin = camera->origin;
+			pixel.dir = v_add(focal_vector(camera),
 					cam_offset_vector(&u, &v, x, y));
-			camera->ray[y][x].dir = v_unit(camera->ray[y][x].dir);
+			pixel.dir = v_unit(pixel.dir);
+			ray_color(pixel, world, REFLECTION_CNT);
 		}
 	}
 }
