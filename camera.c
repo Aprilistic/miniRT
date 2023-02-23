@@ -31,6 +31,7 @@ int	create_rgb(t_color color)
 
 void	make_image(t_mlx *mlx)
 {
+	printf("here\n");
 	t_vec3	u;
 	t_vec3	v;
 	int		x;
@@ -54,4 +55,5 @@ void	make_image(t_mlx *mlx)
 		}
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
+	printf("end\n");
 }

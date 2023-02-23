@@ -6,7 +6,7 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/23 19:44:59 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/23 19:58:16 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c \
 OBJS	= $(SRCS:.c=.o)
 
 CC		= cc
-CFLAGS	= -Wall -Werror -Wextra -I.
+CFLAGS	= -Wall -Werror -Wextra -I. -g
 CLIB	= -lmlx -Lmlx -framework OpenGL -framework Appkit
 
 
