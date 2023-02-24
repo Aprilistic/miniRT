@@ -12,6 +12,7 @@
 # define S_AMBIENT "A"
 # define S_CAMERA "C"
 # define S_LIGHT "L"
+# define S_BACK "B"
 # define S_SPHERE "sp"
 # define S_PLANE "pl"
 # define S_CYLINDER "cy"
@@ -19,7 +20,7 @@
 # define S_SPACES " \t\r\n\v\f"
 # define OK 0
 # define ERROR -1
-# define CAP_CNT 3
+# define CAP_CNT 4
 
 enum	e_idx
 {

@@ -39,7 +39,6 @@ void	make_image(t_mlx *mlx)
 	int		y;
 	t_ray	pixel;
 
-	mlx->world.background = v_init(212,234,253);
 	u = v_unit(v_cross(v_init(0, 1, 0), mlx->camera.dir));
 	v = v_unit(v_cross(mlx->camera.dir, u));
 	y = -1;

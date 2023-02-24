@@ -35,6 +35,8 @@ int	parse_object(char *line, t_mlx *mlx, int *cap_status)
 		parse_camera(splited_line, mlx, &status, cap_status);
 	else if (ft_strcmp(splited_line[0], S_LIGHT) == OK)
 		parse_light(splited_line, mlx, &status, cap_status);
+	else if (ft_strcmp(splited_line[0], S_BACK) == OK)
+		parse_background(splited_line, mlx, &status, cap_status);
 	else if (ft_strcmp(splited_line[0], S_SPHERE) == OK)
 		parse_sphere(splited_line, mlx, &status);
 	else if (ft_strcmp(splited_line[0], S_PLANE) == OK)

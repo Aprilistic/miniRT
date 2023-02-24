@@ -91,3 +91,24 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	else
 		light.color = v_mul_scalar(light.color, brightness);
 }
+
+void	parse_background(char **splited_line, t_mlx *mlx
+						, int *status, int *cap_status)
+{
+	static int	was_here;
+	int			str_cnt;
+
+	str_cnt = 0;
+	while (splited_line[str_cnt])
+		str_cnt++;
+	if (was_here == 1 || str_cnt != 2)
+	{
+		*status = ERROR;
+		return ;
+	}
+	(*cap_status)++;
+	was_here = 1;
+	mlx->world.background = parse_three_double(splited_line[1], status);
+	if (check_rgb(&mlx->world.background) == ERROR)
+		*status = ERROR;
+}

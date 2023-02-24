@@ -43,6 +43,8 @@ void	parse_camera(char **splited_line, t_mlx *mlx, int *status,
 		int *cap_status);
 void	parse_light(char **splited_line, t_mlx *mlx, int *status,
 		int *cap_status);
+void	parse_background(char **splited_line, t_mlx *mlx, int *status,
+		int *cap_status);
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *status);
 void	parse_plane(char **splited_line, t_mlx *mlx, int *status);
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status);
