@@ -73,8 +73,10 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 						point->origin)))
 				continue ;
 		incident_color = v_mul_scalar(world->light[index].color,
-				sin(acos(v_dot(point->normal, incident.dir)))
+				v_dot(point->normal, incident.dir)
 				* attenuation(point->origin, world->light[index].origin));
+		if (incident_color.e[0] < 0)
+			incident_color = v_mul_scalar(incident_color, -1);
 		ret = v_add(ret, incident_color);
 	}
 	return (ret);
@@ -83,7 +85,7 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 {
 	t_record	hit_record;
-	// t_color		diffuse;
+	t_color		diffuse;
 	t_color		specular;
 	t_color		common;
 	// t_color		sum;
@@ -93,11 +95,19 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	else if (hit(ray, world, &hit_record))
 	{
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
-		common = v_mul(common, get_surface_color(&hit_record));
-		common = v_mul_scalar(common, 1.0 / 255);
+		printf("%lf %lf %lf\n", common.e[0], common.e[1], common.e[2]);
+		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
+		diffuse = v_add(diffuse, common);
+		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
+		diffuse = v_mul(diffuse, get_surface_color(&hit_record));
+		diffuse = v_mul_scalar(diffuse, 1.0 / 255);
+		// printf("%lf %lf %lf\n", diffuse.e[0], diffuse.e[1], diffuse.e[2]);
 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
-		printf("%lf %lf %lf\n", specular.e[0], specular.e[1], specular.e[2]);
-		return (common);
+		specular = v_add(specular, common);
+		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
+		// printf("%lf %lf %lf\n", specular.e[0], specular.e[1], specular.e[2]);
+		// return (v_add(diffuse, specular));
+		return (diffuse);
 	}
 	else
 		return (world->background);
