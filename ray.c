@@ -106,8 +106,8 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		specular = v_add(specular, common);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
 		// printf("%lf %lf %lf\n", specular.e[0], specular.e[1], specular.e[2]);
-		// return (v_add(diffuse, specular));
-		return (diffuse);
+		return (v_add(diffuse, specular));
+		// return (diffuse);
 	}
 	else
 		return (world->background);

@@ -4,8 +4,8 @@
 # define INF 1e9
 # define PI 3.14159265359
 
-# define EPSILON 0.0000001
-# define REFLECTION_CNT 1
+# define EPSILON 1e-11
+# define REFLECTION_CNT 2
 # define LIGHT_ATTENUATION	50.0
 
 /* parsing macros */
