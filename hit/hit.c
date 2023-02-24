@@ -1,6 +1,7 @@
 #include "../struct.h"
 #include "../macro.h"
 #include "../function.h"
+#define EPSILON 0.1
 
 void	set_closer_point(double root[2], t_ray *ray, t_record *hit_record)
 {
@@ -41,8 +42,8 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	root[0] = (-coefft[1] - sqrt(discriminant)) / (2.0 * coefft[0]);
 	root[1] = (-coefft[1] + sqrt(discriminant)) / (2.0 * coefft[0]);
 	set_closer_point(root, &ray, hit_record);
-	if (v_length(v_mul(ray.origin, hit_record->origin)) <= 0.1)
-		return (0);
+	// if (v_length(v_mul(ray.origin, hit_record->origin)) <= EPSILON)
+	// 	return (0);
 	hit_record->normal = v_unit(v_sub(hit_record->origin, sphere->center));
 	hit_record->suface = object->surface;
 	return (1);
