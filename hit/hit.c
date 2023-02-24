@@ -48,15 +48,28 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	return (1);
 }
 
-// int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
-// {
-// 	double		root[2];
-// 	t_plane		*plane;
-// 	t_vec3		save;
 
-// 	plane = (t_plane *)(object)->equation;
-// 	return (1);
-// }
+
+int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
+{
+	// 만나는지
+	//   면의 수직인 벡터가 ray에도 수직인지
+	// 근
+	double		discriminant;
+	double		root;
+	t_plane		*plane;
+
+	plane = (t_plane *)(object)->equation;
+	discriminant = v_dot(plane->normal, ray.dir);
+	// 수직일 때
+	if (discriminant <= EPSILON)
+		return (0);
+	root = v_dot(plane->normal, v_sub(plane->point, ray.origin)) / discriminant;
+	hit_record->origin = v_add(ray.origin, v_mul_scalar(ray.dir, root));
+	hit_record->normal = plane->normal;
+	hit_record->suface = object->surface;
+	return (1);
+}
 
 // 각 타입에 따라서 만나는 지점을 구하는 함수로 들어간다.
 int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
@@ -77,7 +90,7 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 	else if (object->type == PLANE)
 	{
 		// 면과 만나는지 구하는 함수
-		// return (hit_by_plane(ray, object, hit_record));
+		return (hit_by_plane(ray, object, hit_record));
 	}
 	return (0);
 }

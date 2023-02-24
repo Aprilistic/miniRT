@@ -1,8 +1,6 @@
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
-#include <stdlib.h>
-#include <fcntl.h>
 // 15.235
 //  integer -> 15
 //  decimal -> 0 + 2

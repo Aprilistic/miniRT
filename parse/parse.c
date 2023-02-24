@@ -1,8 +1,6 @@
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
-#include <stdlib.h>
-#include <fcntl.h>
 
 void	free_two_dimension(char **to_free)
 {

@@ -4,9 +4,9 @@
 # define INF 1e9
 # define PI 3.14159265359
 
-# define EPSILON 0.00001
+# define EPSILON 0.0000001
 # define REFLECTION_CNT 1
-# define LIGHT_ATTENUATION	15.0
+# define LIGHT_ATTENUATION	50.0
 
 /* parsing macros */
 # define S_AMBIENT "A"
@@ -20,6 +20,7 @@
 # define S_SPACES " \t\r\n\v\f"
 # define OK 0
 # define ERROR -1
+# define ARG_CNT 8
 # define CAP_CNT 4
 
 enum	e_idx

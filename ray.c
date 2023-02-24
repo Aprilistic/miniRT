@@ -95,7 +95,7 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	else if (hit(ray, world, &hit_record))
 	{
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
-		printf("%lf %lf %lf\n", common.e[0], common.e[1], common.e[2]);
+		// printf("%lf %lf %lf\n", common.e[0], common.e[1], common.e[2]);
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
 		diffuse = v_add(diffuse, common);
 		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
