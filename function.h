@@ -26,11 +26,12 @@ t_vec3	v_cross(t_vec3 left, t_vec3 right);
 t_vec3	v_mul(t_vec3 left, t_vec3 right);
 t_vec3	v_mul_scalar(t_vec3 vector, double scalar);
 
+/*	reflection functions	*/
+t_ray	diffuse_ray(t_record hit_record);
+t_ray	specular_ray(t_ray incident, t_record hit_record);
 t_color	init_color(double r, double g, double b);
 t_color	ray_color(t_ray ray, t_hittable *world, int depth);
 double	random_double(double min, double max);
-t_ray	diffuse_ray(t_ray incident, t_record hit_record);
-t_ray	specular_ray(t_ray incident, t_record hit_record);
 
 /*  parsing functions  */
 int		parse(char *file, t_mlx *mlx);
@@ -67,9 +68,6 @@ void	add_object_hittable(t_hittable *world, t_object object);
 void	add_light_hittable(t_hittable *world, t_light light);
 void	delete_hittable(t_hittable *world);
 
-/*	reflection functions	*/
-t_ray	diffuse_ray(t_ray incident, t_record hit_record);
-t_ray	specular_ray(t_ray incident, t_record hit_record);
 
 /*	camera default value setting	*/
 void	make_image(t_mlx *mlx);

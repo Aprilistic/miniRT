@@ -93,7 +93,7 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		return (init_color(0, 0, 0));
 	else if (hit(ray, world, &hit_record))
 	{
-		diffuse = ray_color(diffuse_ray(ray, hit_record), world, depth - 1);
+		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
 		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
