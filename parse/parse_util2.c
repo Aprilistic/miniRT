@@ -1,8 +1,6 @@
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
-#include <stdlib.h>
-#include <fcntl.h>
 #define ARG_CNT 8
 
 // sp   0.0,0.0,20.6   12.6    10,0,255
