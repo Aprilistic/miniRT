@@ -3,7 +3,7 @@
 #include "function.h"
 #include <stdlib.h>
 #include <fcntl.h>
-#define ARG_CNT 4
+#define ARG_CNT 8
 
 // sp   0.0,0.0,20.6   12.6    10,0,255
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
@@ -28,10 +28,10 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
-	// object.surface.diffuse_rate = atod(splited_line[5], status);
-	// object.surface.specular_rate = atod(splited_line[6], status);
-	// object.surface.brightness_rate = atod(splited_line[7], status);
+	object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	object.surface.diffuse_rate = atod(splited_line[5], status);
+	object.surface.specular_rate = atod(splited_line[6], status);
+	object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = SPHERE;
@@ -66,10 +66,10 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(splited_line[4], status) != 0);
-	// object.surface.diffuse_rate = atod(splited_line[5], status);
-	// object.surface.specular_rate = atod(splited_line[6], status);
-	// object.surface.brightness_rate = atod(splited_line[7], status);
+	object.surface.checkerboard = (atod(splited_line[4], status) != 0);
+	object.surface.diffuse_rate = atod(splited_line[5], status);
+	object.surface.specular_rate = atod(splited_line[6], status);
+	object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = PLANE;
