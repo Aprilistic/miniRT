@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/25 13:59:00 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/25 21:21:04 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,16 @@ void	print_error(char *msg)
 	write(2, msg, len);
 }
 
+void	leaks(void)
+{
+	system("leaks miniRT");
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 
+	// atexit(leaks);
 	if (argc != 2)
 	{
 		print_error("Error: wrong argument count\n");
