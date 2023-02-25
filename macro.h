@@ -21,7 +21,7 @@
 # define OK 0
 # define ERROR -1
 # define ARG_CNT 8
-# define CAP_CNT 4
+# define CAP_CNT 3
 
 enum	e_idx
 {

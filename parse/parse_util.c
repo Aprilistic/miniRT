@@ -66,7 +66,7 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 void	parse_light(char **splited_line, t_mlx *mlx
 						, int *status, int *cap_status)
 {
-	static int	was_here;
+	// static int	was_here;
 	int			str_cnt;
 	t_light		light;
 	double		brightness;
@@ -74,13 +74,13 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	str_cnt = 0;
 	while (splited_line[str_cnt])
 		str_cnt++;
-	if (was_here == 1 || str_cnt != 4)
+	if (/*was_here == 1 || */str_cnt != 4)
 	{
 		*status = ERROR;
 		return ;
 	}
-	(*cap_status)++;
-	was_here = 1;
+	(*cap_status) = (*cap_status);
+	// was_here = 1;
 	light.origin = parse_three_double(splited_line[1], status);
 	brightness = atod(splited_line[2], status);
 	light.color = parse_three_double(splited_line[3], status);

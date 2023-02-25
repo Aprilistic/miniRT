@@ -32,6 +32,7 @@ t_ray	specular_ray(t_ray incident, t_record hit_record);
 t_color	init_color(double r, double g, double b);
 t_color	ray_color(t_ray ray, t_hittable *world, int depth);
 double	random_double(double min, double max);
+void	limit_color_brightness(t_color *color);
 
 /*  parsing functions  */
 int		parse(char *file, t_mlx *mlx);
