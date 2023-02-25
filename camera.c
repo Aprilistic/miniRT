@@ -51,8 +51,8 @@ void	make_image(t_mlx *mlx)
 			pixel.dir = v_add(focal_vector(&mlx->camera),
 					cam_offset_vector(&u, &v, x, y));
 			pixel.dir = v_unit(pixel.dir);
-			my_mlx_pixel_put(&mlx->img, x, y, create_rgb(ray_color(pixel,
-						&mlx->world, REFLECTION_CNT)));
+			my_mlx_pixel_put(&mlx->img, x, Y_SIZE - y,
+				create_rgb(ray_color(pixel, &mlx->world, REFLECTION_CNT)));
 		}
 	}
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
