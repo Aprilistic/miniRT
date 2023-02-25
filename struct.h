@@ -76,6 +76,7 @@ typedef struct s_plane
 {
 	t_point3	point;
 	t_vec3		normal;
+	int			has_right_normal;
 }				t_plane;
 
 typedef struct s_sphere

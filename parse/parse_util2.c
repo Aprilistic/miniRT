@@ -59,6 +59,7 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	plane = malloc(sizeof(t_plane));
+	plane->has_right_normal = 0;
 	plane->point = parse_three_double(splited_line[1], status);
 	plane->normal = parse_three_double(splited_line[2], status);
 	object.surface.color = parse_three_double(splited_line[3], status);
