@@ -36,7 +36,7 @@ t_ray	specular_ray(t_ray incident, t_record hit_record)
 
 	ret.origin = hit_record.origin;
 	h = v_dot(incident.dir, hit_record.normal);
-	tmp = v_mul_scalar(hit_record.normal, h * 2);
+	tmp = v_mul_scalar(hit_record.normal, h * -2);
 	ret.dir = v_add(tmp, incident.dir);
 	ret.dir = v_unit(ret.dir);
 	return (ret);

@@ -40,9 +40,9 @@ double	clamp(double d, double min, double max)
 
 void	limit_color_brightness(t_color *color)
 {
-	color->e[0] = clamp(color->e[0], 0, 255.99);
-	color->e[1] = clamp(color->e[1], 0, 255.99);
-	color->e[2] = clamp(color->e[2], 0, 255.99);
+	color->e[0] = clamp(color->e[0], 0, 255);
+	color->e[1] = clamp(color->e[1], 0, 255);
+	color->e[2] = clamp(color->e[2], 0, 255);
 }
 
 double	attenuation(t_point3 start, t_point3 end)
@@ -95,26 +95,18 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	else if (hit(ray, world, &hit_record))
 	{
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
-		common = v_add(common, v_mul_scalar(get_surface_color(&hit_record), hit_record.suface.brightness_rate));
 		limit_color_brightness(&common);
-		// printf("%lf %lf %lf\n", common.e[0], common.e[1], common.e[2]);
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
 		diffuse = v_add(diffuse, common);
-		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
-		limit_color_brightness(&diffuse);
 		diffuse = v_mul(diffuse, get_surface_color(&hit_record));
 		diffuse = v_mul_scalar(diffuse, 1.0 / 255);
-		// printf("%lf %lf %lf\n", diffuse.e[0], diffuse.e[1], diffuse.e[2]);
+		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
 		specular = v_add(specular, common);
-		limit_color_brightness(&specular);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
-		// printf("%lf %lf %lf\n", specular.e[0], specular.e[1], specular.e[2]);
 		sum = v_add(diffuse, specular);
 		limit_color_brightness(&sum);
 		return (v_mul_scalar(sum, attenuation(ray.origin, hit_record.origin)));
-		// return (diffuse);
 	}
-	else
-		return (world->background);
+	return (world->background);
 }
