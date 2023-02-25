@@ -82,8 +82,8 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 	plane = (t_plane *)(object)->equation;
 	// make_right_normal(&ray, plane);
 	hit_record->normal = plane->normal;
-	if (v_dot(ray.dir, hit_record->normal) > EPSILON)
-		hit_record->normal = v_mul_scalar(hit_record->normal, -1);
+	// if (v_dot(ray.dir, hit_record->normal) > EPSILON)
+	// 	hit_record->normal = v_mul_scalar(hit_record->normal, -1);
 	// 수직이거나 안 만날 때
 	discriminant = v_dot(hit_record->normal, ray.dir);
 	if (discriminant >= EPSILON)

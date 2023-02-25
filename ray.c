@@ -94,6 +94,8 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		return (init_color(0, 0, 0));
 	else if (hit(ray, world, &hit_record))
 	{
+		if (v_dot(ray.dir, hit_record.normal) > 0.1)
+			v_mul_scalar(hit_record.normal, -1);
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
 		limit_color_brightness(&common);
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
