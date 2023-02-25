@@ -40,9 +40,9 @@ double	clamp(double d, double min, double max)
 
 void	limit_color_brightness(t_color *color)
 {
-	color->e[0] = clamp(color->e[0], 0, 255.99);
-	color->e[1] = clamp(color->e[1], 0, 255.99);
-	color->e[2] = clamp(color->e[2], 0, 255.99);
+	color->e[0] = clamp(color->e[0], 0, 255.9);
+	color->e[1] = clamp(color->e[1], 0, 255.9);
+	color->e[2] = clamp(color->e[2], 0, 255.9);
 }
 
 double	attenuation(t_point3 start, t_point3 end)
@@ -99,14 +99,16 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
 		diffuse = v_add(diffuse, common);
 		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
+		limit_color_brightness(&diffuse);
 		diffuse = v_mul(diffuse, get_surface_color(&hit_record));
 		diffuse = v_mul_scalar(diffuse, 1.0 / 255);
 		// printf("%lf %lf %lf\n", diffuse.e[0], diffuse.e[1], diffuse.e[2]);
 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
 		specular = v_add(specular, common);
+		limit_color_brightness(&specular);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
 		// printf("%lf %lf %lf\n", specular.e[0], specular.e[1], specular.e[2]);
-		return (v_add(diffuse, specular));
+		return (v_mul_scalar(v_add(diffuse, specular) , attenuation(ray.origin, hit_record.origin)));
 		// return (diffuse);
 	}
 	else
