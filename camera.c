@@ -27,7 +27,7 @@ t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y)
 
 int	create_rgb(t_color color)
 {
-	// printf("%d, %d, %d\n", (int)color.e[0], (int)color.e[1], (int)color.e[2]);
+	limit_color_brightness(&color);
 	return ((int)color.e[0] << 16 | (int)color.e[1] << 8 | (int)color.e[2]);
 }
 
