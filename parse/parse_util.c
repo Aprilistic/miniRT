@@ -84,12 +84,12 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	light.origin = parse_three_double(splited_line[1], status);
 	brightness = atod(splited_line[2], status);
 	light.color = parse_three_double(splited_line[3], status);
-	add_light_hittable(&mlx->world, light);
 	if (!(0.0 <= brightness && brightness <= 1.0)
 		|| check_rgb(&light.color) == ERROR)
 		*status = ERROR;
 	else
 		light.color = v_mul_scalar(light.color, brightness);
+	add_light_hittable(&mlx->world, light);
 }
 
 void	parse_background(char **splited_line, t_mlx *mlx

@@ -49,12 +49,10 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 }
 
 
-
 int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 {
 	// 만나는지
 	//   면의 수직인 벡터가 ray에도 수직인지
-	// 근
 	double		discriminant;
 	double		root;
 	t_plane		*plane;

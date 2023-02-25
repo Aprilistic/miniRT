@@ -6,32 +6,13 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/24 20:53:28 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:59:00 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "function.h"
 #include "macro.h"
 #include "struct.h"
-
-void	make_ray_tracing(t_mlx *mlx)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < Y_SIZE)
-	{
-		x = 0;
-		while (x < X_SIZE)
-		{
-			my_mlx_pixel_put(&mlx->img, x, y, 0x00FFFFFF);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
-}
 
 int	check_filename(char *filename)
 {
