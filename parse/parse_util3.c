@@ -67,9 +67,9 @@ double	atod(char *str, int *status)
 	result = 0;
 	if (*status == ERROR)
 		return (result);
-	if (*str == '\0')
+	if (str[0] == '\0' || (str[0] == '-' && str[1] == '\0'))
 		*status = ERROR;
-	sign = 1 - (*str == '-') * 2;
+	sign = 1 - (str[0] == '-') * 2;
 	str += (sign == -1);
 	result = sign * (integer_part(&str, status) + decimal_part(&str, status));
 	if (*str != '\0')
