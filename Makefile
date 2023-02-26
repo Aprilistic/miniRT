@@ -12,9 +12,14 @@
 
 NAME	= miniRT
 
-SRCS	= main.c vec3/vec3_util.c vec3/vec3_util2.c our_mlx/our_mlx.c \
+SRCS	= main.c \
+		vec3/vec3_util.c vec3/vec3_util2.c \
+		our_mlx/our_mlx.c \
 		parse/parse.c parse/parse_util.c parse/parse_util2.c parse/parse_util3.c \
-		hit/hittable.c camera.c ray.c hit/hit.c reflection.c
+		hit/hittable.c  hit/hit.c \
+		calculation/ray.c calculation/reflection.c \
+		rendering/camera.c rendering/image.c
+
 OBJS	= $(SRCS:.c=.o)
 
 CC		= cc

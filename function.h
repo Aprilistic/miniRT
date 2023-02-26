@@ -8,17 +8,11 @@
 # include <stdio.h>
 
 /*	t_vec3 */
-/* initialize */
 t_vec3	v_init(double e0, double e1, double e2);
-
-/* unit vector */
 t_vec3	v_unit(t_vec3 vector);
-
-/* length */
 double	v_length(t_vec3 vector);
 double	v_length_squared(t_vec3 vector);
 
-/* addition, subtraction, dot, cross, mul vector, mul scalar */
 t_vec3	v_add(t_vec3 left, t_vec3 right);
 t_vec3	v_sub(t_vec3 left, t_vec3 right);
 double	v_dot(t_vec3 left, t_vec3 right);
@@ -27,6 +21,7 @@ t_vec3	v_mul(t_vec3 left, t_vec3 right);
 t_vec3	v_mul_scalar(t_vec3 vector, double scalar);
 
 /*	reflection functions	*/
+void	set_face_normal(t_ray ray, t_record *hit_record);
 t_ray	diffuse_ray(t_record hit_record);
 t_ray	specular_ray(t_ray incident, t_record hit_record);
 t_color	init_color(double r, double g, double b);
@@ -71,8 +66,11 @@ void	add_object_hittable(t_hittable *world, t_object object);
 void	add_light_hittable(t_hittable *world, t_light light);
 void	delete_hittable(t_hittable *world);
 
+/* cmaera.c */
+t_vec3	focal_vector(t_camera *camera);
+t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
 
-/*	camera default value setting	*/
+/* render.c */
 void	make_image(t_mlx *mlx);
 
 /* hit function */
