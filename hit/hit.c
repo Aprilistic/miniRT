@@ -75,17 +75,17 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 {
 	// 만나는지
 	//   면의 수직인 벡터가 ray에도 수직인지
-	double		discriminant;
+	double		dot_product;
 	double		root;
 	t_plane		*plane;
 
 	plane = (t_plane *)(object)->equation;
 	// make_right_normal(&ray, plane);
 	// 수직이거나 안 만날 때
-	discriminant = v_dot(plane->normal, ray.dir);
-	if (fabs(discriminant) < EPSILON)
+	dot_product = v_dot(plane->normal, ray.dir);
+	if (fabs(dot_product) < 1e-4)
 		return (0);
-	root = v_dot(v_sub(plane->point, ray.origin), plane->normal) / discriminant;
+	root = v_dot(v_sub(plane->point, ray.origin), plane->normal) / dot_product;
 	hit_record->origin = v_add(ray.origin, v_mul_scalar(ray.dir, root));
 	hit_record->normal = plane->normal;
 	set_face_normal(ray, hit_record);
