@@ -2,6 +2,12 @@
 #include "macro.h"
 #include "function.h"
 
+void	check_ratio(double ratio, int *errno)
+{
+	if (!(EPSILON <= ratio && ratio <= 1.0))
+		*errno |= RATE;
+}
+
 double	integer_part(char **str, int *errno)
 {
 	double	integer;

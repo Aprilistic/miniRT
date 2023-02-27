@@ -54,6 +54,7 @@ double	integer_part(char **str, int *status);
 double	decimal_part(char **str, int *status);
 t_vec3	parse_three_double(char *str, int *status);
 void	check_rgb(t_color *color, int *errno);
+void	check_ratio(double ratio, int *errno);
 
 /*  our_mlx functions  */
 void	init_mlx(t_mlx *mlx);

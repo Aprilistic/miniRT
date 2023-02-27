@@ -10,6 +10,9 @@ void	parse_commons(t_object *object, char **splited, int *errno
 	object->surface.specular_rate = atod(splited[start_idx + 2], errno);
 	object->surface.brightness_rate = atod(splited[start_idx + 3], errno);
 	check_rgb(&object->surface.color, errno);
+	check_ratio(object->surface.diffuse_rate, errno);
+	check_ratio(object->surface.brightness_rate, errno);
+	check_ratio(object->surface.brightness_rate, errno);
 }
 
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *errno)

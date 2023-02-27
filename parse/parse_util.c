@@ -31,9 +31,8 @@ void	parse_ambient(char **splited_line, t_mlx *mlx
 	ambient_ratio = atod(splited_line[1], errno);
 	mlx->world.ambiance = parse_three_double(splited_line[2], errno);
 	check_rgb(&mlx->world.ambiance, errno);
-	if (!(0.0 <= ambient_ratio && ambient_ratio <= 1.0))
-		*errno |= RATE;
-	else
+	check_ratio(ambient_ratio, errno);
+	if (*errno == OK)
 		mlx->world.ambiance = v_mul_scalar(mlx->world.ambiance, ambient_ratio);
 }
 
@@ -86,7 +85,7 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	brightness = atod(splited_line[2], errno);
 	light.color = parse_three_double(splited_line[3], errno);
 	check_rgb(&light.color, errno);
-	*errno |= !(0.0 <= brightness && brightness <= 1.0) * RATE;
+	check_ratio(brightness, errno);
 	if (*errno == OK)
 	{
 		light.color = v_mul_scalar(light.color, brightness);
