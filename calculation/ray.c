@@ -58,7 +58,7 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 	int			index;
 
 	ret = v_init(0, 0, 0);
-	hit_record.normal = v_init(INF, INF, INF);
+	hit_record.origin = v_init(INF, INF, INF);
 	index = -1;
 	while (++index < world->cur_light_count)
 	{
@@ -88,7 +88,7 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	t_color		common;
 	t_color		sum;
 
-    hit_record.normal = v_init(INF, INF, INF);
+    hit_record.origin = v_init(INF, INF, INF);
 	if (depth < 0)
 		return (v_init(0, 0, 0));
 	else if (hit(ray, world, &hit_record))

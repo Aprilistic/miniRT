@@ -73,15 +73,13 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 	t_plane		*plane;
 	t_point3	contact;
 
-	// 만나는지
-	//   면의 수직인 벡터가 ray에도 수직인지
 	plane = (t_plane *)(object)->equation;
-	// make_right_normal(&ray, plane);
-	// 수직이거나 안 만날 때
 	dot_product = v_dot(plane->normal, ray.dir);
 	if (fabs(dot_product) < 1e-4)
 		return (0);
 	root = v_dot(v_sub(plane->point, ray.origin), plane->normal) / dot_product;
+	if (root < 0)
+		return (0);
 	contact = v_add(ray.origin, v_mul_scalar(ray.dir, root));
 	if (closer_contact(ray, contact, hit_record))
 	{
@@ -118,8 +116,8 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 
 int	hit(t_ray ray, t_hittable *world, t_record *hit_record)
 {
-	int index;
-	int hit_surface;
+	int	index;
+	int	hit_surface;
 
 	hit_surface = 0;
 	index = 0;
