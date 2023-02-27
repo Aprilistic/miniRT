@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/27 19:51:03 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:25:42 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	print_explicit_error(int errno)
 		print_error("\t: number error\n");
 	if (errno & CAPITAL)
 		print_error("\t: capital identifier count error\n");
-	if (errno == 0)
+	if (errno == ACCESS)
 		print_error("\t: failed to open the file\n");
 }
 

@@ -26,6 +26,7 @@
 
 enum	e_error
 {
+	ACCESS = 0,
 	EXTENSION = 1,
 	LENGTH = 2,
 	FOV = 4,
