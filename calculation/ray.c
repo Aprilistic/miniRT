@@ -3,7 +3,6 @@
 #include "../struct.h"
 #include <math.h>
 #include <stdlib.h>
-#include <time.h>
 
 t_color	get_surface_color(t_record *hit_record)
 {
@@ -64,7 +63,6 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 	{
 		incident.origin = point->origin;
 		incident.dir = v_unit(v_sub(world->light[index].origin, point->origin));
-		set_face_normal(incident, point);
 		if (hit(incident, world, &hit_record))
 			if (v_length_squared(v_sub(hit_record.origin,
 						point->origin)) < v_length_squared(v_sub(world->light[index].origin,
@@ -88,12 +86,11 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	t_color		common;
 	t_color		sum;
 
-    hit_record.origin = v_init(INF, INF, INF);
+	hit_record.origin = v_init(INF, INF, INF);
 	if (depth < 0)
 		return (v_init(0, 0, 0));
 	else if (hit(ray, world, &hit_record))
 	{
-		set_face_normal(ray, &hit_record);
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
 		limit_color_brightness(&common);
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);

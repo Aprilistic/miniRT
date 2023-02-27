@@ -1,6 +1,6 @@
-#include "function.h"
-#include "macro.h"
-#include "struct.h"
+#include "../function.h"
+#include "../macro.h"
+#include "../struct.h"
 
 int	create_rgb(t_color color)
 {

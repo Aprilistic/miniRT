@@ -77,7 +77,7 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 
 	plane = (t_plane *)(object)->equation;
 	dot_product = v_dot(plane->normal, ray.dir);
-	if (fabs(dot_product) < 1e-4)
+	if (fabs(dot_product) < EPSILON)
 		return (0);
 	root = v_dot(v_sub(plane->point, ray.origin), plane->normal) / dot_product;
 	if (root < 0)

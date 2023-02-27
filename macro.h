@@ -5,7 +5,7 @@
 # define PI 3.14159265359
 
 # define EPSILON 1e-11
-# define REFLECTION_CNT 3
+# define REFLECTION_CNT 2
 # define LIGHT_ATTENUATION	50.0
 # define MAX_DIST	1000
 
