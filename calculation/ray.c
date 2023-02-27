@@ -4,20 +4,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-t_color	get_surface_color(t_record *hit_record)
-{
-	if (hit_record->suface.checkerboard)
-	{
-		if (((int)hit_record->origin.e[0] + (int)hit_record->origin.e[1]
-				+ (int)hit_record->origin.e[2]) % 2)
-			return (v_init(66, 73, 87));
-		else
-			return (v_init(238, 238, 238));
-	}
-	else
-		return (hit_record->suface.color);
-}
-
 double	clamp(double d, double min, double max)
 {
 	if (d < min)
@@ -90,11 +76,11 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	else if (hit(ray, world, &hit_record))
 	{
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
-		common = v_add(common, v_mul_scalar(get_surface_color(&hit_record), hit_record.suface.brightness_rate));
+		common = v_add(common, v_mul_scalar(hit_record.suface.color, hit_record.suface.brightness_rate));
 		limit_color_brightness(&common);
 		diffuse = ray_color(diffuse_ray(hit_record), world, depth - 1);
 		diffuse = v_add(diffuse, common);
-		diffuse = v_mul(diffuse, get_surface_color(&hit_record));
+		diffuse = v_mul(diffuse, hit_record.suface.color);
 		diffuse = v_mul_scalar(diffuse, 1.0 / 255);
 		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
 		limit_color_brightness(&diffuse);
