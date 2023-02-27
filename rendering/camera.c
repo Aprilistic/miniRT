@@ -1,6 +1,6 @@
-#include "function.h"
-#include "macro.h"
-#include "struct.h"
+#include "../function.h"
+#include "../macro.h"
+#include "../struct.h"
 #include <math.h>
 
 t_vec3	focal_vector(t_camera *camera)
@@ -8,8 +8,6 @@ t_vec3	focal_vector(t_camera *camera)
 	t_vec3	dir;
 
 	dir = v_unit(camera->dir);
-	// dir = v_mul_scalar(dir, asin(camera->fov / 2.0) * X_SIZE / 2
-	// 		* cos(camera->fov / 2.0));
 	dir = v_mul_scalar(camera->dir, atan(camera->fov / 2.0) * (X_SIZE / 2));
 	return (dir);
 }
