@@ -28,12 +28,6 @@ double	attenuation(t_point3 start, t_point3 end)
 	return (clamp(LIGHT_ATTENUATION / dist, 0.0, 1.0));
 }
 
-void	set_face_normal(t_ray ray, t_record *hit_record)
-{
-	if (v_dot(ray.dir, hit_record->normal) > 0)
-		hit_record->normal = v_mul_scalar(hit_record->normal, -1);
-}
-
 t_color	light_from_spot(t_record *point, t_hittable *world)
 {
 	t_color		ret;

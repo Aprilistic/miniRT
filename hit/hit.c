@@ -69,6 +69,12 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	return (0);
 }
 
+void	set_face_normal(t_ray ray, t_record *hit_record)
+{
+	if (v_dot(ray.dir, hit_record->normal) > 0)
+		hit_record->normal = v_mul_scalar(hit_record->normal, -1);
+}
+
 int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 {
 	double		dot_product;
