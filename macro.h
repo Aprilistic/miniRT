@@ -24,14 +24,6 @@
 # define ARG_CNT 7
 # define CAP_CNT 3
 
-// - .rt 확장자 아님.
-// - 길이는 양수
-// - fov는 0~180
-// - rate는 0~1
-// - unit vector
-// - rgb
-// - 정의되지 않은 식별자.
-// - 적절하지 않은 옵션 개수
 enum	e_error
 {
 	EXTENSION = 1,

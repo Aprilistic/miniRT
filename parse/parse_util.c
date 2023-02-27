@@ -86,9 +86,8 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	brightness = atod(splited_line[2], errno);
 	light.color = parse_three_double(splited_line[3], errno);
 	check_rgb(&light.color, errno);
-	if (!(0.0 <= brightness && brightness <= 1.0))
-		*errno |= RATE;
-	else
+	*errno |= !(0.0 <= brightness && brightness <= 1.0) * RATE;
+	if (*errno == OK)
 	{
 		light.color = v_mul_scalar(light.color, brightness);
 		add_light_hittable(&mlx->world, light);

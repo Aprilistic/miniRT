@@ -1,18 +1,11 @@
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
-// 15.235
-//  integer -> 15
-//  decimal -> 0 + 2
-//   decimal -> 0.2 + 3
-//    decimal -> 0.32 + 5
-//  * decimal -> 5.32
 
 double	integer_part(char **str, int *errno)
 {
 	double	integer;
 
-	// 정수부 계산
 	if (**str == '.')
 		*errno |= NUM;
 	integer = 0;
@@ -34,15 +27,12 @@ double	decimal_part(char **str, int *errno)
 	double	decimal;
 	int		division_num;
 
-	// "123." 만 들어왔을 때 처리
-	// 여기서 str++이 된다. 그래서 .을 넘어간다.
 	if (**str == '.' && *(*str + 1) == '\0')
 	{
 		*errno |= NUM;
 		return (0);
 	}
 	*str += (**str == '.');
-	// 소수부 계산
 	decimal = 0;
 	division_num = 0;
 	while (**str)
