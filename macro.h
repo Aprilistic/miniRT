@@ -5,7 +5,7 @@
 # define PI 3.14159265359
 
 # define EPSILON 1e-11
-# define REFLECTION_CNT 10
+# define REFLECTION_CNT 3
 # define LIGHT_ATTENUATION	50.0
 # define MAX_DIST	1000
 
@@ -21,7 +21,7 @@
 # define S_SPACES " \t\r\n\v\f"
 # define OK 0
 # define ERROR -1
-# define ARG_CNT 8
+# define ARG_CNT 7
 # define CAP_CNT 3
 
 enum	e_idx
