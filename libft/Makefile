@@ -33,10 +33,10 @@ bonus :
 	make FLAG=1 all
 
 clean :
-	rm -f $(OBJS) $(OBJS_B)
+	rm -rf $(OBJS) $(OBJS_B)
 
 fclean : clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re : fclean all
 
