@@ -20,27 +20,30 @@ t_vec3	v_cross(t_vec3 left, t_vec3 right);
 t_vec3	v_mul(t_vec3 left, t_vec3 right);
 t_vec3	v_mul_scalar(t_vec3 vector, double scalar);
 
-/*	reflection functions	*/
-void	set_face_normal(t_ray ray, t_record *hit_record);
+/* brightness.c */
+void	limit_color_brightness(t_color *color);
+double	attenuation(t_point3 start, t_point3 end);
+t_color	light_from_spot(t_record *point, t_hittable *world);
+
+/* color.c */
+t_color	ray_color(t_ray ray, t_hittable *world, int depth);
+
+/* reflection.c */
 t_ray	diffuse_ray(t_record hit_record);
 t_ray	specular_ray(t_ray incident, t_record hit_record);
-t_color	init_color(double r, double g, double b);
-t_color	ray_color(t_ray ray, t_hittable *world, int depth);
-double	random_double(double min, double max);
-void	limit_color_brightness(t_color *color);
 
 /*  parsing functions  */
 int		parse(char *file, t_mlx *mlx);
 int		parse_object(char *line, t_mlx *mlx, int *cap_status);
 void	free_two_dimension(char **to_free);
 void	parse_ambient(char **splited_line, t_mlx *mlx, int *status,
-		int *cap_status);
+			int *cap_status);
 void	parse_camera(char **splited_line, t_mlx *mlx, int *status,
-		int *cap_status);
+			int *cap_status);
 void	parse_light(char **splited_line, t_mlx *mlx, int *status,
-		int *cap_status);
+			int *cap_status);
 void	parse_background(char **splited_line, t_mlx *mlx, int *status,
-		int *cap_status);
+			int *cap_status);
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *status);
 void	parse_plane(char **splited_line, t_mlx *mlx, int *status);
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status);

@@ -35,6 +35,7 @@ enum	e_idx
 # define X_SIZE 1280
 # define WIN_NAME "miniRT"
 # define DESTROY_ICON 17
+
 enum	e_key
 {
 	S_KEY = 1,

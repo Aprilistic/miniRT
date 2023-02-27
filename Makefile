@@ -17,7 +17,7 @@ SRCS	= main.c \
 		our_mlx/our_mlx.c \
 		parse/parse.c parse/parse_util.c parse/parse_util2.c parse/parse_util3.c \
 		hit/hittable.c  hit/hit.c \
-		calculation/ray.c calculation/reflection.c \
+		calculation/color.c calculation/brightness.c calculation/reflection.c \
 		rendering/camera.c rendering/image.c
 
 OBJS	= $(SRCS:.c=.o)
