@@ -54,3 +54,4 @@ dkms.conf
 # etc
 .vscode
 .DS_Store
+miniRT

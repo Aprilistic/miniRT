@@ -1,19 +1,8 @@
-#include "function.h"
-#include "macro.h"
-#include "struct.h"
+#include "../function.h"
+#include "../macro.h"
+#include "../struct.h"
 #include <math.h>
 #include <stdlib.h>
-#include <time.h>
-
-t_color	init_color(double r, double g, double b)
-{
-	t_color	ret;
-
-	ret.e[0] = r;
-	ret.e[1] = g;
-	ret.e[2] = b;
-	return (ret);
-}
 
 t_color	get_surface_color(t_record *hit_record)
 {
@@ -21,9 +10,9 @@ t_color	get_surface_color(t_record *hit_record)
 	{
 		if (((int)hit_record->origin.e[0] + (int)hit_record->origin.e[1]
 				+ (int)hit_record->origin.e[2]) % 2)
-			return (init_color(66, 73, 87));
+			return (v_init(66, 73, 87));
 		else
-			return (init_color(238, 238, 238));
+			return (v_init(238, 238, 238));
 	}
 	else
 		return (hit_record->suface.color);
@@ -33,7 +22,7 @@ double	clamp(double d, double min, double max)
 {
 	if (d < min)
 		d = min;
-	if (d > max)
+	else if (d > max)
 		d = max;
 	return (d);
 }
@@ -53,6 +42,12 @@ double	attenuation(t_point3 start, t_point3 end)
 	return (clamp(LIGHT_ATTENUATION / dist, 0.0, 1.0));
 }
 
+void	set_face_normal(t_ray ray, t_record *hit_record)
+{
+	if (v_dot(ray.dir, hit_record->normal) > 0)
+		hit_record->normal = v_mul_scalar(hit_record->normal, -1);
+}
+
 t_color	light_from_spot(t_record *point, t_hittable *world)
 {
 	t_color		ret;
@@ -61,7 +56,8 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 	t_record	hit_record;
 	int			index;
 
-	ret = init_color(0, 0, 0);
+	ret = v_init(0, 0, 0);
+	hit_record.origin = v_init(INF, INF, INF);
 	index = -1;
 	while (++index < world->cur_light_count)
 	{
@@ -90,8 +86,9 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 	t_color		common;
 	t_color		sum;
 
+	hit_record.origin = v_init(INF, INF, INF);
 	if (depth < 0)
-		return (init_color(0, 0, 0));
+		return (v_init(0, 0, 0));
 	else if (hit(ray, world, &hit_record))
 	{
 		common = v_add(world->ambiance, light_from_spot(&hit_record, world));
