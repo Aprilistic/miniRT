@@ -7,7 +7,7 @@
 # define EPSILON 1e-11
 # define REFLECTION_CNT 3
 # define LIGHT_ATTENUATION	50.0
-# define MAX_DIST	1000
+# define MAX_DIST	200
 
 /* parsing macros */
 # define S_AMBIENT "A"
