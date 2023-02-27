@@ -64,7 +64,7 @@ int	parse(char *file, t_mlx *mlx, int *errno)
 		free(line);
 	}
 	close(fd);
-	if (cap_cnt != CAP_CNT)
+	if (*errno == OK && cap_cnt != CAP_CNT)
 		*errno |= CAPITAL;
 	return (*errno);
 }

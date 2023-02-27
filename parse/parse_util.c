@@ -22,7 +22,8 @@ void	parse_ambient(char **splited_line, t_mlx *mlx
 		str_cnt++;
 	if (was_here == 1 || str_cnt != 3)
 	{
-		*errno |= OPTION_CNT;
+		*errno |= (str_cnt != 3) * OPTION_CNT;
+		*errno |= (was_here == 1) * CAPITAL;
 		return ;
 	}
 	(*cap_cnt)++;
@@ -47,7 +48,8 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 		str_cnt++;
 	if (was_here == 1 || str_cnt != 4)
 	{
-		*errno |= OPTION_CNT;
+		*errno |= (str_cnt != 4) * OPTION_CNT;
+		*errno |= (was_here == 1) * CAPITAL;
 		return ;
 	}
 	(*cap_cnt)++;
@@ -74,6 +76,7 @@ void	parse_light(char **splited_line, t_mlx *mlx
 		str_cnt++;
 	if (/*was_here == 1 || */str_cnt != 4)
 	{
+		// 여기 CAPITAL 처리.
 		*errno |= OPTION_CNT;
 		return ;
 	}
@@ -103,7 +106,8 @@ void	parse_background(char **splited_line, t_mlx *mlx
 		str_cnt++;
 	if (was_here == 1 || str_cnt != 2)
 	{
-		*errno |= OPTION_CNT;
+		*errno |= (str_cnt != 2) * OPTION_CNT;
+		*errno |= (was_here == 1) * CAPITAL;
 		return ;
 	}
 	(*cap_cnt)++;

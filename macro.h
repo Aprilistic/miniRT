@@ -42,13 +42,8 @@ enum	e_error
 	RGB = 32,
 	UNDEFINED = 64,
 	OPTION_CNT = 128,
-	NUM = 256
-};
-
-enum	e_idx
-{
-	LINE,
-	CAPITAL
+	NUM = 256,
+	CAPITAL = 512
 };
 
 /* our_mlx macros */
