@@ -1,6 +1,7 @@
 #include "../function.h"
 #include "../macro.h"
 #include "../struct.h"
+#include <unistd.h>
 
 int	create_rgb(t_color color)
 {
@@ -25,8 +26,8 @@ void	make_image(t_mlx *mlx)
 		while (++x < X_SIZE)
 		{
 			pixel.origin = mlx->camera.origin;
-			pixel.dir =
-				v_add(focal_vector(&mlx->camera), cam_offset_vector(&u, &v, x, y));
+			pixel.dir = v_add(focal_vector(&mlx->camera),
+					cam_offset_vector(&u, &v, x, y));
 			pixel.dir = v_unit(pixel.dir);
 			my_mlx_pixel_put(
 				&mlx->img, x, Y_SIZE - y, create_rgb(ray_color(pixel,

@@ -62,7 +62,8 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 		return (0);
 	if (closer_contact(ray, contact, hit_record))
 	{
-		update_hit_record(contact, v_unit(v_sub(contact, sphere->center)), object->surface, hit_record);
+		update_hit_record(contact, v_unit(v_sub(contact, sphere->center)),
+			object->surface, hit_record);
 		return (1);
 	}
 	return (0);
