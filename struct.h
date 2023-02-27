@@ -25,7 +25,6 @@ typedef struct s_camera
 
 typedef struct s_texture
 {
-	int			checkerboard;
 	t_color		color;
 	double		diffuse_rate;
 	double		specular_rate;
@@ -86,7 +85,7 @@ typedef struct s_sphere
 
 typedef struct s_cylinder
 {
-	t_point3	point;
+	t_point3	center;
 	t_vec3		dir_vector;
 	double		diameter;
 	double		height;

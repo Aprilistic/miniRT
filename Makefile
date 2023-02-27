@@ -6,7 +6,7 @@
 #    By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/13 14:19:56 by jinheo            #+#    #+#              #
-#    Updated: 2023/02/23 19:58:16 by taeypark         ###   ########.fr        #
+#    Updated: 2023/02/27 16:55:44 by taeypark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS	= main.c \
 		vec3/vec3_util.c vec3/vec3_util2.c \
 		our_mlx/our_mlx.c \
 		parse/parse.c parse/parse_util.c parse/parse_util2.c parse/parse_util3.c \
-		hit/hittable.c  hit/hit.c \
+		hit/hittable.c hit/hit.c hit/hit_utils.c \
 		calculation/color.c calculation/brightness.c calculation/reflection.c \
 		rendering/camera.c rendering/image.c
 

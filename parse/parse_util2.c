@@ -26,10 +26,9 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *status)
 	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	object.surface.checkerboard = (atod(splited_line[4], status) != 0);
-	object.surface.diffuse_rate = atod(splited_line[5], status);
-	object.surface.specular_rate = atod(splited_line[6], status);
-	object.surface.brightness_rate = atod(splited_line[7], status);
+	object.surface.diffuse_rate = atod(splited_line[4], status);
+	object.surface.specular_rate = atod(splited_line[5], status);
+	object.surface.brightness_rate = atod(splited_line[6], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = SPHERE;
@@ -64,10 +63,9 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *status)
 	object.surface.color = parse_three_double(splited_line[3], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	object.surface.checkerboard = (atod(splited_line[4], status) != 0);
-	object.surface.diffuse_rate = atod(splited_line[5], status);
-	object.surface.specular_rate = atod(splited_line[6], status);
-	object.surface.brightness_rate = atod(splited_line[7], status);
+	object.surface.diffuse_rate = atod(splited_line[4], status);
+	object.surface.specular_rate = atod(splited_line[5], status);
+	object.surface.brightness_rate = atod(splited_line[6], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = PLANE;
@@ -96,17 +94,16 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *status)
 	}
 
 	cylinder = malloc(sizeof(t_cylinder));
-	cylinder->point = parse_three_double(splited_line[1], status);
+	cylinder->center = parse_three_double(splited_line[1], status);
 	cylinder->dir_vector = parse_three_double(splited_line[2], status);
 	cylinder->diameter = atod(splited_line[3], status);
 	cylinder->height = atod(splited_line[4], status);
 	object.surface.color = parse_three_double(splited_line[5], status);
 
 	// 여기 부터 옵션 checkerboard, diffuse, specular, brightness
-	// object.surface.checkerboard = (atod(splited_line[5], status) != 0);
-	// object.surface.diffuse_rate = atod(splited_line[6], status);
-	// object.surface.specular_rate = atod(splited_line[7], status);
-	// object.surface.brightness_rate = atod(splited_line[8], status);
+	object.surface.diffuse_rate = atod(splited_line[5], status);
+	object.surface.specular_rate = atod(splited_line[6], status);
+	object.surface.brightness_rate = atod(splited_line[7], status);
 
 	// 드디어 list에 넣기!!!
 	object.type = CYLINDER;

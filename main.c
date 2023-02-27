@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/25 21:21:04 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:00:11 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_object(t_object *object)
 	{
 		printf("* cylider *\n");
 		printf("point : ");
-		print_three_doubles(&((t_cylinder *)object->equation)->point);
+		print_three_doubles(&((t_cylinder *)object->equation)->center);
 		printf("dir : ");
 		print_three_doubles(&((t_cylinder *)object->equation)->dir_vector);
 		printf("height : ");
@@ -67,7 +67,6 @@ void	print_object(t_object *object)
 		printf("dir_vector : ");
 		print_three_doubles(&((t_plane *)object->equation)->normal);
 	}
-	printf("checkerboard : %d\n", object->surface.checkerboard);
 	printf("diffuse_rate : %f\n", object->surface.diffuse_rate);
 	printf("specular_rate : %f\n", object->surface.specular_rate);
 	printf("brightness_rate : %f\n\n", object->surface.brightness_rate);
