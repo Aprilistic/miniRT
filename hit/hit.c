@@ -82,6 +82,7 @@ int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 	else if (object->type == CYLINDER)
 	{
 		// 원기둥과 만나는지 구하는 함수
+		return (hit_by_cylinder(ray, object, hit_record));
 	}
 	else if (object->type == CONE)
 	{

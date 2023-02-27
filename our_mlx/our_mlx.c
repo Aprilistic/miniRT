@@ -23,6 +23,13 @@ int	key_hook(int keycode, t_mlx *mlx)
 {
 	if (keycode == ESC_KEY)
 		destroy_window(mlx);
+	else if (keycode == LEFT_ARROW_KEY || keycode == RIGHT_ARROW_KEY
+			|| keycode == DOWN_ARROW_KEY || keycode == UP_ARROW_KEY)
+	{
+		camera_location_move(mlx, keycode);
+		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+		make_image(mlx);
+	}
 	return (0);
 }
 

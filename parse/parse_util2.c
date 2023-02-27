@@ -9,6 +9,7 @@ void	parse_commons(t_object *object, char **splited, int *errno
 	object->surface.diffuse_rate = atod(splited[start_idx + 1], errno);
 	object->surface.specular_rate = atod(splited[start_idx + 2], errno);
 	object->surface.brightness_rate = atod(splited[start_idx + 3], errno);
+	check_rgb(&object->surface.color, errno);
 }
 
 void	parse_sphere(char **splited_line, t_mlx *mlx, int *errno)
@@ -31,7 +32,6 @@ void	parse_sphere(char **splited_line, t_mlx *mlx, int *errno)
 	parse_commons(&object, splited_line, errno, 3);
 	object.type = SPHERE;
 	object.equation = sphere;
-	check_rgb(&object.surface.color, errno);
 	*errno |= (sphere->diameter < 0) * LENGTH;
 	if (*errno == OK)
 		add_object_hittable(&mlx->world, object);

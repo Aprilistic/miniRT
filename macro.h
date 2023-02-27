@@ -54,6 +54,7 @@ enum	e_key
 	DOWN_ARROW_KEY,
 	UP_ARROW_KEY
 };
+
 enum	e_mouse
 {
 	LEFT = 1,
