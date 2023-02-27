@@ -72,6 +72,7 @@ void	delete_hittable(t_hittable *world);
 /* cmaera.c */
 t_vec3	focal_vector(t_camera *camera);
 t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
+void	camera_location_move(t_mlx *mlx, int keycode);
 
 /* render.c */
 void	make_image(t_mlx *mlx);
