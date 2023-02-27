@@ -71,8 +71,8 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 		incident_color = v_mul_scalar(world->light[index].color,
 				v_dot(point->normal, incident.dir)
 				* attenuation(point->origin, world->light[index].origin));
-		if (incident_color.e[0] < 0)
-			incident_color = v_mul_scalar(incident_color, -1);
+		// if (incident_color.e[0] < 0)
+		// 	incident_color = v_mul_scalar(incident_color, -1);
 		ret = v_add(ret, incident_color);
 	}
 	return (ret);
@@ -98,9 +98,11 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		diffuse = v_mul(diffuse, get_surface_color(&hit_record));
 		diffuse = v_mul_scalar(diffuse, 1.0 / 255);
 		diffuse = v_mul_scalar(diffuse, hit_record.suface.diffuse_rate);
+		limit_color_brightness(&diffuse);
 		specular = ray_color(specular_ray(ray, hit_record), world, depth - 1);
 		specular = v_add(specular, common);
 		specular = v_mul_scalar(specular, hit_record.suface.specular_rate);
+		limit_color_brightness(&specular);
 		sum = v_add(diffuse, specular);
 		limit_color_brightness(&sum);
 		return (v_mul_scalar(sum, attenuation(ray.origin, hit_record.origin)));

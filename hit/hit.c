@@ -8,7 +8,7 @@ int	closer_contact(t_ray ray, t_point3 contact, t_record *hit_record)
 	double	old_dist;
 
 	new_dist = v_length(v_sub(ray.origin, contact));
-	if (new_dist >= MAX_DIST)
+	if (new_dist <= EPSILON || MAX_DIST <= new_dist)
 		return (0);
 	old_dist = v_length(v_sub(ray.origin, hit_record->origin));
 	if (new_dist < old_dist)
@@ -55,7 +55,7 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 
 	sphere = (t_sphere *)(object)->equation;
 	coefft[0] = v_dot(ray.dir, ray.dir);
-	save = v_sub(ray.origin, sphere->center); //(A-C)
+	save = v_sub(ray.origin, sphere->center);
 	coefft[1] = 2 * v_dot(ray.dir, save);
 	coefft[2] = v_dot(save, save) - pow(sphere->diameter / 2, 2);
 	if (!ray_sphere_contact(ray, coefft, &contact))
