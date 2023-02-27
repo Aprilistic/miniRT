@@ -7,9 +7,6 @@ void	free_two_dimension(char **to_free)
 	int	i;
 
 	i = 0;
-	// printf("========= free =========\n");
-	// for (int i = 0; to_free[i]; i++)
-	// 	printf("%s\n", to_free[i]);
 	while (to_free[i])
 	{
 		free(to_free[i]);
@@ -18,63 +15,56 @@ void	free_two_dimension(char **to_free)
 	free(to_free);
 }
 
-int	parse_object(char *line, t_mlx *mlx, int *cap_status)
+int	parse_object(char *line, t_mlx *mlx, int *errno, int *cap_cnt)
 {
-	int		status;
 	char	**splited_line;
 
-	if (line[0] == '\n')
-		return (OK);
-	status = OK;
 	splited_line = ft_split(line, S_SPACES);
 	if (ft_strcmp(splited_line[0], S_AMBIENT) == OK)
-		parse_ambient(splited_line, mlx, &status, cap_status);
+		parse_ambient(splited_line, mlx, errno, cap_cnt);
 	else if (ft_strcmp(splited_line[0], S_CAMERA) == OK)
-		parse_camera(splited_line, mlx, &status, cap_status);
+		parse_camera(splited_line, mlx, errno, cap_cnt);
 	else if (ft_strcmp(splited_line[0], S_LIGHT) == OK)
-		parse_light(splited_line, mlx, &status, cap_status);
+		parse_light(splited_line, mlx, errno, cap_cnt);
 	else if (ft_strcmp(splited_line[0], S_BACK) == OK)
-		parse_background(splited_line, mlx, &status, cap_status);
+		parse_background(splited_line, mlx, errno, cap_cnt);
 	else if (ft_strcmp(splited_line[0], S_SPHERE) == OK)
-		parse_sphere(splited_line, mlx, &status);
+		parse_sphere(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], S_PLANE) == OK)
-		parse_plane(splited_line, mlx, &status);
+		parse_plane(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], S_CYLINDER) == OK)
-		parse_cylinder(splited_line, mlx, &status);
+		parse_cylinder(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], S_CONE) == OK)
-		parse_cone(splited_line, mlx, &status);
+		parse_cone(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], "#") != OK)
-		status = ERROR;
+		*errno |= UNDEFINED;
 	free_two_dimension(splited_line);
-	return (status);
+	return (*errno);
 }
 
-int	parse(char *file, t_mlx *mlx)
+int	parse(char *file, t_mlx *mlx, int *errno)
 {
 	int		fd;
-	int		status[2];
+	int		cap_cnt;
 	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd == ERROR)
 		return (ERROR);
-	status[LINE] = OK;
-	status[CAPITAL] = OK;
+	cap_cnt = 0;
 	init_hittable(&mlx->world);
-	while (status[LINE] != ERROR)
+	while (*errno == OK)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (parse_object(line, mlx, &status[CAPITAL]) == ERROR)
-		{
+		if (line[0] != '\n'
+			&& parse_object(line, mlx, errno, &cap_cnt) != OK)
 			delete_hittable(&mlx->world);
-			status[LINE] = ERROR;
-		}
 		free(line);
 	}
 	close(fd);
-	if (status[CAPITAL] != CAP_CNT)
-		status[LINE] = ERROR;
-	return (status[LINE]);
+	if (cap_cnt != CAP_CNT)
+		*errno |= CAPITAL;
+	return (*errno);
 }

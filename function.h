@@ -33,8 +33,8 @@ t_ray	diffuse_ray(t_record hit_record);
 t_ray	specular_ray(t_ray incident, t_record hit_record);
 
 /*  parsing functions  */
-int		parse(char *file, t_mlx *mlx);
-int		parse_object(char *line, t_mlx *mlx, int *cap_status);
+int		parse(char *file, t_mlx *mlx, int *errno);
+int		parse_object(char *line, t_mlx *mlx, int *errno, int *cap_cnt);
 void	free_two_dimension(char **to_free);
 void	parse_ambient(char **splited_line, t_mlx *mlx, int *status,
 			int *cap_status);
@@ -53,7 +53,7 @@ double	parse_atod(char **str, int *status);
 double	integer_part(char **str, int *status);
 double	decimal_part(char **str, int *status);
 t_vec3	parse_three_double(char *str, int *status);
-int		check_rgb(t_color *color);
+void	check_rgb(t_color *color, int *errno);
 
 /*  our_mlx functions  */
 void	init_mlx(t_mlx *mlx);
