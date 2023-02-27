@@ -8,7 +8,7 @@ int	closer_contact(t_ray ray, t_point3 contact, t_record *hit_record)
 	double	old_dist;
 
 	new_dist = v_length(v_sub(ray.origin, contact));
-	if (new_dist >= MAX_DIST)
+	if (new_dist <= EPSILON || MAX_DIST <= new_dist)
 		return (0);
 	old_dist = v_length(v_sub(ray.origin, hit_record->origin));
 	if (new_dist < old_dist)
