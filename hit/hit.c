@@ -37,7 +37,9 @@ int	ray_sphere_contact(t_ray ray, double *coefft, t_point3 *contact)
 	root[1] = (-coefft[1] + sqrt(discriminant)) / (2.0 * coefft[0]);
 	two_contact[0] = v_add(ray.origin, v_mul_scalar(ray.dir, root[0]));
 	two_contact[1] = v_add(ray.origin, v_mul_scalar(ray.dir, root[1]));
-	if (v_length_squared(v_sub(contact[0], ray.origin)) > v_length_squared(v_sub(contact[1], ray.origin)))
+	if (root[1] < 0)
+		return (0);
+	if (root[0] < 0)
 		*contact = two_contact[1];
 	else
 		*contact = two_contact[0];
