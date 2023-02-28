@@ -42,7 +42,6 @@ t_color	far_dist_fade(t_color sum, t_color background, double attenuation_rate)
 	return (ret);
 }
 
-
 t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 {
 	t_record	hit_record;
@@ -64,8 +63,8 @@ t_color	ray_color(t_ray ray, t_hittable *world, int depth)
 		limit_color_brightness(&specular);
 		sum = v_add(diffuse, specular);
 		limit_color_brightness(&sum);
-		return (far_dist_fade(sum, world->background, attenuation(ray.origin, hit_record.origin)));
-		// return (v_mul_scalar(sum, attenuation(ray.origin, hit_record.origin)));
+		return (far_dist_fade(sum, world->background,
+				attenuation(ray.origin, hit_record.origin)));
 	}
 	return (world->background);
 }

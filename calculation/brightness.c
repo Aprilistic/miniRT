@@ -37,10 +37,10 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 	int			index;
 
 	ret = v_init(0, 0, 0);
-	hit_record.origin = v_init(INF, INF, INF);
 	index = -1;
 	while (++index < world->cur_light_count)
 	{
+		hit_record.origin = v_init(INF, INF, INF);
 		incident.origin = point->origin;
 		incident.dir = v_unit(v_sub(world->light[index].origin, point->origin));
 		if (hit(incident, world, &hit_record))

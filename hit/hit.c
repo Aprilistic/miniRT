@@ -6,25 +6,22 @@ int	ray_sphere_contact(t_ray ray, double *coefft, t_point3 *contact)
 {
 	double		discriminant;
 	double		root[2];
-	t_point3	two_contact[2];
 
 	discriminant = coefft[1] * coefft[1] - 4 * coefft[0] * coefft[2];
 	if (discriminant <= 0)
 		return (0);
 	root[0] = (-coefft[1] - sqrt(discriminant)) / (2.0 * coefft[0]);
 	root[1] = (-coefft[1] + sqrt(discriminant)) / (2.0 * coefft[0]);
-	two_contact[0] = v_add(ray.origin, v_mul_scalar(ray.dir, root[0]));
-	two_contact[1] = v_add(ray.origin, v_mul_scalar(ray.dir, root[1]));
-	if (root[1] < 0)
+	if (root[1] < EPSILON)
 		return (0);
-	else if (root[0] < 0)
+	else if (root[0] < EPSILON)
 	{
-		*contact = two_contact[1];
+		*contact = v_add(ray.origin, v_mul_scalar(ray.dir, root[1]));
 		return (1);
 	}
 	else
 	{
-		*contact = two_contact[0];
+		*contact = v_add(ray.origin, v_mul_scalar(ray.dir, root[0]));
 		return (2);
 	}
 }
