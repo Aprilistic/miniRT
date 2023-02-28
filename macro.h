@@ -47,17 +47,17 @@ enum	e_error
 
 enum	e_key
 {
-	S_KEY = 1,
 	ESC_KEY = 53,
 	LEFT_ARROW_KEY = 123,
 	RIGHT_ARROW_KEY,
 	DOWN_ARROW_KEY,
-	UP_ARROW_KEY
+	UP_ARROW_KEY,
+	PAGE_UP_KEY = 116,
+	PAGE_DOWN_KEY = 121
 };
 
 enum	e_mouse
 {
-	LEFT = 1,
 	SCROLL_UP = 4,
 	SCROLL_DOWN
 };
