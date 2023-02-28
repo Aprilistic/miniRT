@@ -42,6 +42,7 @@ enum	e_error
 /* our_mlx macros */
 # define Y_SIZE 720
 # define X_SIZE 1280
+# define X_SIZE_HALF 640
 # define WIN_NAME "miniRT"
 # define DESTROY_ICON 17
 

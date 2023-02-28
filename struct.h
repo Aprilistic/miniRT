@@ -19,6 +19,8 @@ typedef struct s_ray
 typedef struct s_camera
 {
 	t_vec3		dir;
+	t_vec3		u;
+	t_vec3		v;
 	t_point3	origin;
 	int			fov;
 }				t_camera;
