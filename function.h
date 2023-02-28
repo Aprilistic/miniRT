@@ -75,6 +75,7 @@ t_vec3	focal_vector(t_camera *camera);
 t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
+void	calcuate_u_v_vec(t_mlx *mlx);
 
 /* render.c */
 void	make_image(t_mlx *mlx);
