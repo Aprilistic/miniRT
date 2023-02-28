@@ -44,5 +44,5 @@ void	camera_location_move(t_mlx *mlx, int keycode)
 	else if (keycode == PAGE_UP_KEY)
 		*cam_location = v_add(*cam_location, vertical_dir);
 	else if (keycode == PAGE_DOWN_KEY)
-		*cam_location = v_add(*cam_location, vertical_dir);
+		*cam_location = v_sub(*cam_location, vertical_dir);
 }
