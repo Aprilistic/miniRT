@@ -60,6 +60,8 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 		*errno |= UNIT;
 	if (!(0 <= mlx->camera.fov && mlx->camera.fov <= 180))
 		*errno |= FOV;
+	mlx->camera.u = v_unit(v_cross(v_init(0, 1, 0), mlx->camera.dir));
+	mlx->camera.v = v_unit(v_cross(mlx->camera.dir, mlx->camera.u));
 }
 
 void	parse_light(char **splited_line, t_mlx *mlx
