@@ -73,8 +73,6 @@ void	delete_hittable(t_hittable *world);
 /* camera.c */
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
-void	calcuate_u_v_vec(t_mlx *mlx);
-void	split_deg(t_mlx *mlx, double *cos_by_coord);
 
 /* render.c */
 void	make_image(t_mlx *mlx);
