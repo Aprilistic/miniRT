@@ -91,5 +91,7 @@ void	set_face_normal(t_ray ray, t_record *hit_record);
 int		hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record);
 int		straight_curve_intersection(t_ray ray, double *coefft
 			, t_point3 *contact);
+t_vec3	get_cylinder_noraml(t_vec3 *intersect, t_cylinder *cylinder);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 21:09:39 by taeypark          #+#    #+#             */
-/*   Updated: 2023/02/27 20:25:42 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:40:21 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_object(t_object *object)
 		printf("point : ");
 		print_three_doubles(&((t_cylinder *)object->equation)->center);
 		printf("dir : ");
-		print_three_doubles(&((t_cylinder *)object->equation)->dir_vector);
+		print_three_doubles(&((t_cylinder *)object->equation)->dir);
 		printf("height : ");
 		printf("%lf\n", ((t_cylinder *)object->equation)->height);
 		printf("diameter : ");
