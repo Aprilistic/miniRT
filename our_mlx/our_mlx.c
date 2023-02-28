@@ -31,12 +31,6 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		make_image(mlx);
 	}
-	else if (keycode == SCROLL_UP || keycode == SCROLL_DOWN)
-	{
-		camera_fov_change(mlx, keycode);
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		make_image(mlx);
-	}
 	return (0);
 }
 
@@ -50,5 +44,6 @@ int	destroy_window(t_mlx *mlx)
 void	minirt_hook(t_mlx *mlx)
 {
 	mlx_key_hook(mlx->win_ptr, &key_hook, mlx);
+	mlx_mouse_hook(mlx->win_ptr, &mouse_hook, mlx);
 	mlx_hook(mlx->win_ptr, DESTROY_ICON, 0, &destroy_window, mlx);
 }

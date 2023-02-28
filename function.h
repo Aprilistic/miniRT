@@ -62,6 +62,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		key_hook(int keycode, t_mlx *mlx);
 int		destroy_window(t_mlx *mlx);
 void	minirt_hook(t_mlx *mlx);
+int		mouse_hook(int mouse_code, int x, int y, t_mlx *mlx);
 
 /* hittable functions */
 void	init_hittable(t_hittable *world);
@@ -73,6 +74,9 @@ void	delete_hittable(t_hittable *world);
 /* camera.c */
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
+t_vec3	focal_vector(t_camera *camera);
+t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
+
 
 /* render.c */
 void	make_image(t_mlx *mlx);
