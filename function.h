@@ -74,8 +74,6 @@ void	delete_hittable(t_hittable *world);
 /* camera.c */
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
-t_vec3	focal_vector(t_camera *camera);
-t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
 
 
 /* render.c */
