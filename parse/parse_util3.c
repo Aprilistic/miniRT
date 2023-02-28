@@ -4,7 +4,7 @@
 
 void	check_ratio(double ratio, int *errno)
 {
-	if (!(EPSILON <= ratio && ratio <= 1.0))
+	if (!(0 <= ratio && ratio <= 1.0))
 		*errno |= RATE;
 }
 
