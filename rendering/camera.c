@@ -30,12 +30,18 @@ void	camera_location_move(t_mlx *mlx, int keycode)
 
 int	camera_fov_change(t_mlx *mlx, int keycode)
 {
-	if (mlx->camera.fov <= 0 || 180 <= mlx->camera.fov)
-		return (0);
 	if (keycode == SCROLL_UP)
+	{
+		if (mlx->camera.fov >= 180)
+			return (0);
 		mlx->camera.fov += 5;
+	}
 	else if (keycode == SCROLL_DOWN)
+	{
+		if (mlx->camera.fov <= 0)
+			return (0);
 		mlx->camera.fov -= 5;
+	}
 	if (mlx->camera.fov > 180)
 		mlx->camera.fov = 180;
 	else if (mlx->camera.fov < 0)
