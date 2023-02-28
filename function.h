@@ -70,10 +70,11 @@ void	add_object_hittable(t_hittable *world, t_object object);
 void	add_light_hittable(t_hittable *world, t_light light);
 void	delete_hittable(t_hittable *world);
 
-/* cmaera.c */
+/* camera.c */
 t_vec3	focal_vector(t_camera *camera);
 t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
 void	camera_location_move(t_mlx *mlx, int keycode);
+int		camera_fov_change(t_mlx *mlx, int keycode);
 
 /* render.c */
 void	make_image(t_mlx *mlx);

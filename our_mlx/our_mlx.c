@@ -31,6 +31,12 @@ int	key_hook(int keycode, t_mlx *mlx)
 		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 		make_image(mlx);
 	}
+	else if (keycode == SCROLL_UP || keycode == SCROLL_DOWN)
+	{
+		camera_fov_change(mlx, keycode);
+		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+		make_image(mlx);
+	}
 	return (0);
 }
 
