@@ -15,15 +15,10 @@ int	ray_sphere_contact(t_ray ray, double *coefft, t_point3 *contact)
 	if (root[1] < EPSILON)
 		return (0);
 	else if (root[0] < EPSILON)
-	{
 		*contact = v_add(ray.origin, v_mul_scalar(ray.dir, root[1]));
-		return (1);
-	}
 	else
-	{
 		*contact = v_add(ray.origin, v_mul_scalar(ray.dir, root[0]));
-		return (2);
-	}
+	return (1);
 }
 
 int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
@@ -32,22 +27,22 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	double		coefft[3];
 	t_vec3		save;
 	t_point3	contact;
-	int			ret;
 
 	sphere = (t_sphere *)(object)->equation;
 	coefft[0] = v_dot(ray.dir, ray.dir);
 	save = v_sub(ray.origin, sphere->center);
 	coefft[1] = 2 * v_dot(ray.dir, save);
 	coefft[2] = v_dot(save, save) - pow(sphere->diameter / 2, 2);
-	ret = ray_sphere_contact(ray, coefft, &contact);
-	if (!ret)
+	if (!ray_sphere_contact(ray, coefft, &contact))
 		return (0);
 	if (closer_contact(ray, contact, hit_record))
 	{
-		update_hit_record(contact, v_unit(v_sub(contact, sphere->center)),
-			object->surface, hit_record);
-		if (ret == 1)
-			v_mul_scalar(hit_record->normal, -1);
+		if (v_length(v_sub(ray.origin, sphere->center)) > sphere->diameter / 2)
+			update_hit_record(contact, v_unit(v_sub(contact, sphere->center)),
+				object->surface, hit_record);
+		else
+			update_hit_record(contact, v_unit(v_sub(sphere->center, contact)),
+				object->surface, hit_record);
 		return (1);
 	}
 	return (0);
