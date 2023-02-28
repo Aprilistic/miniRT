@@ -25,17 +25,24 @@ t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y)
 void	camera_location_move(t_mlx *mlx, int keycode)
 {
 	t_vec3	*cam_location;
-	t_vec3	right_dir;
+	t_vec3	horizontal_dir;
+	t_vec3	vertical_dir;
 
 	cam_location = &mlx->camera.origin;
-	right_dir = v_cross(v_init(0, 1, 0), mlx->camera.dir);
-	right_dir = v_unit(right_dir);
+	horizontal_dir = v_cross(v_init(0, 1, 0), mlx->camera.dir);
+	horizontal_dir = v_unit(horizontal_dir);
+	vertical_dir = v_cross(mlx->camera.dir, horizontal_dir);
+	vertical_dir = v_unit(vertical_dir);
 	if (keycode == LEFT_ARROW_KEY)
-		*cam_location = v_sub(*cam_location, right_dir);
+		*cam_location = v_sub(*cam_location, horizontal_dir);
 	else if (keycode == RIGHT_ARROW_KEY)
-		*cam_location = v_add(*cam_location, right_dir);
+		*cam_location = v_add(*cam_location, horizontal_dir);
 	else if (keycode == DOWN_ARROW_KEY)
 		*cam_location = v_sub(*cam_location, mlx->camera.dir);
 	else if (keycode == UP_ARROW_KEY)
 		*cam_location = v_add(*cam_location, mlx->camera.dir);
+	else if (keycode == PAGE_UP_KEY)
+		*cam_location = v_add(*cam_location, vertical_dir);
+	else if (keycode == PAGE_DOWN_KEY)
+		*cam_location = v_add(*cam_location, vertical_dir);
 }
