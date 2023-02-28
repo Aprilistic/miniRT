@@ -71,11 +71,10 @@ void	add_light_hittable(t_hittable *world, t_light light);
 void	delete_hittable(t_hittable *world);
 
 /* camera.c */
-t_vec3	focal_vector(t_camera *camera);
-t_vec3	cam_offset_vector(t_vec3 *u, t_vec3 *v, int x, int y);
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
 void	calcuate_u_v_vec(t_mlx *mlx);
+void	split_deg(t_mlx *mlx, double *cos_by_coord);
 
 /* render.c */
 void	make_image(t_mlx *mlx);
