@@ -81,10 +81,13 @@ void	make_image(t_mlx *mlx);
 
 /* hit function */
 int		hit(t_ray ray, t_hittable *world, t_record *hit_record);
+int		hit_by_plane(t_ray ray, t_object *object, t_record *hit_record);
 int		closer_contact(t_ray ray, t_point3 contact, t_record *hit_record);
 void	update_hit_record(t_point3 contact, t_vec3 normal, t_texture surface,
 		t_record *hit_record);
 void	set_face_normal(t_ray ray, t_record *hit_record);
 int		hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record);
+int		straight_curve_intersection(t_ray ray, double *coefft
+			, t_point3 *contact);
 
 #endif

@@ -2,7 +2,7 @@
 #include "../macro.h"
 #include "../struct.h"
 
-int	ray_sphere_contact(t_ray ray, double *coefft, t_point3 *contact)
+int	straight_curve_intersection(t_ray ray, double *coefft, t_point3 *contact)
 {
 	double		discriminant;
 	double		root[2];
@@ -33,7 +33,7 @@ int	hit_by_sphere(t_ray ray, t_object *object, t_record *hit_record)
 	save = v_sub(ray.origin, sphere->center);
 	coefft[1] = 2 * v_dot(ray.dir, save);
 	coefft[2] = v_dot(save, save) - pow(sphere->diameter / 2, 2);
-	if (!ray_sphere_contact(ray, coefft, &contact))
+	if (!straight_curve_intersection(ray, coefft, &contact))
 		return (0);
 	if (closer_contact(ray, contact, hit_record))
 	{

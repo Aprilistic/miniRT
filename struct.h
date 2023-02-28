@@ -88,7 +88,7 @@ typedef struct s_sphere
 typedef struct s_cylinder
 {
 	t_point3	center;
-	t_vec3		dir_vector;
+	t_vec3		dir;
 	double		diameter;
 	double		height;
 }				t_cylinder;

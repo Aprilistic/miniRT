@@ -82,7 +82,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	}
 	cylinder = malloc(sizeof(t_cylinder));
 	cylinder->center = parse_three_double(splited_line[1], errno);
-	cylinder->dir_vector = parse_three_double(splited_line[2], errno);
+	cylinder->dir = parse_three_double(splited_line[2], errno);
 	cylinder->diameter = atod(splited_line[3], errno);
 	cylinder->height = atod(splited_line[4], errno);
 	parse_commons(&object, splited_line, errno, 5);
@@ -90,7 +90,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	object.equation = cylinder;
 	check_rgb(&object.surface.color, errno);
 	*errno |= (cylinder->diameter < 0 || cylinder->height < 0) * LENGTH;
-	*errno |= (v_length(cylinder->dir_vector) != 1) * UNIT;
+	*errno |= (v_length(cylinder->dir) != 1) * UNIT;
 	if (*errno == OK)
 		add_object_hittable(&mlx->world, object);
 }
