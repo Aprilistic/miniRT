@@ -21,8 +21,8 @@ t_vec3	cam_offset_vector(t_mlx *mlx, double width, int x, int y)
 	t_vec3	x_dir;
 	t_vec3	y_dir;
 
-	x_scale = width / (X_SIZE / 2) * (x - X_SIZE / 2);
-	y_scale = width / X_SIZE * Y_SIZE / (Y_SIZE / 2) * (y - Y_SIZE / 2);
+	x_scale = width / (X_SIZE) * (x * 2 - X_SIZE);
+	y_scale = width / X_SIZE * (y * 2 - Y_SIZE);
 	x_dir = v_mul_scalar(mlx->camera.u, x_scale);
 	y_dir = v_mul_scalar(mlx->camera.v, y_scale);
 	return (v_add(x_dir, y_dir));
@@ -47,7 +47,7 @@ void	make_image(t_mlx *mlx)
 					cam_offset_vector(mlx, width, x, y));
 			pixel.dir = v_unit(pixel.dir);
 			my_mlx_pixel_put(
-				&mlx->img, x, Y_SIZE - y, create_rgb(ray_color(pixel,
+				&mlx->img, x, Y_SIZE - 1 - y, create_rgb(ray_color(pixel,
 						&mlx->world, REFLECTION_CNT)));
 		}
 	}

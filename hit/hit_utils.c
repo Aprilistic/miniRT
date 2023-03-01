@@ -10,7 +10,8 @@ int	in_the_height(t_vec3 *contact, t_vec3 *dir, double height)
 	return (-height / 2 <= contact_height && contact_height <= height / 2);
 }
 
-int	hit_by_one_circle(t_ray *ray, t_object *object, t_record *hit_record, double radius)
+int	hit_by_one_circle(t_ray *ray, t_object *object,
+	t_record *hit_record, double radius)
 {
 	t_record	backup;
 	t_plane		*plane;
@@ -27,7 +28,8 @@ int	hit_by_one_circle(t_ray *ray, t_object *object, t_record *hit_record, double
 	return (0);
 }
 
-int	hit_by_two_circles(t_ray *ray, t_cylinder *cylinder, t_texture *surface, t_record *hit_record)
+int	hit_by_two_circles(t_ray *ray, t_cylinder *cylinder,
+	t_texture *surface, t_record *hit_record)
 {
 	t_plane		plane;
 	t_object	object;
@@ -52,7 +54,8 @@ int	hit_by_two_circles(t_ray *ray, t_cylinder *cylinder, t_texture *surface, t_r
 	return (hit);
 }
 
-int	hit_by_real_cylinder(t_ray *ray, t_cylinder *cylinder, t_texture *surface, t_record *hit_record)
+int	hit_by_real_cylinder(t_ray *ray, t_cylinder *cylinder,
+	t_texture *surface, t_record *hit_record)
 {
 	t_vec3			save;
 	t_vec3			contact;
