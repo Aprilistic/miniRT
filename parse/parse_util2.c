@@ -57,6 +57,7 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *errno)
 	plane = malloc(sizeof(t_plane));
 	plane->point = parse_three_double(splited_line[1], errno);
 	plane->normal = parse_three_double(splited_line[2], errno);
+	plane->circle_shape = 0;
 	parse_commons(&object, splited_line, errno, 3);
 	object.type = PLANE;
 	object.equation = plane;
@@ -68,7 +69,7 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *errno)
 
 void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
 {
-	t_plane		plane;
+	t_plane		*plane;
 	t_object	object;
 	t_cylinder	*cylinder;
 
@@ -77,15 +78,22 @@ void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
 	object.equation = &plane;
 	object.surface = cylinder_obj.surface;
 
-	plane.circle_shape = 1;
-	plane.radius = cylinder->diameter / 2;
+	plane = malloc(sizeof(t_plane));
+	plane->circle_shape = 1;
+	plane->radius = cylinder->diameter / 2;
+	plane->normal = cylinder->dir;
+	plane->point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
+	object.equation = plane;
+	add_object_hittable(&mlx->world, object);
 
-	plane.normal = cylinder->dir;
-	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
+	plane = malloc(sizeof(t_plane));
+	plane->circle_shape = 1;
+	plane->radius = cylinder->diameter / 2;
+	plane->normal = v_mul_scalar(cylinder->dir, -1);
+	plane->point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
+	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
-	plane.normal = v_mul_scalar(cylinder->dir, -1);
-	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
-	add_object_hittable(&mlx->world, object);
+
 	add_object_hittable(&mlx->world, cylinder_obj);
 }
 
@@ -105,7 +113,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	}
 	cylinder = malloc(sizeof(t_cylinder));
 	cylinder->center = parse_three_double(splited_line[1], errno);
-	cylinder->dir = parse_three_double(splited_line[2], errno);
+	cylinder->dir = v_unit(parse_three_double(splited_line[2], errno));
 	cylinder->diameter = atod(splited_line[3], errno);
 	cylinder->height = atod(splited_line[4], errno);
 	parse_commons(&object, splited_line, errno, 5);
@@ -113,7 +121,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	object.equation = cylinder;
 	check_rgb(&object.surface.color, errno);
 	*errno |= (cylinder->diameter < 0 || cylinder->height < 0) * LENGTH;
-	*errno |= (v_length(cylinder->dir) != 1) * UNIT;
+	// *errno |= (v_length(cylinder->dir) != 1) * UNIT;
 	if (*errno == OK)
 		add_cylinder_hittable(mlx, object);
 }

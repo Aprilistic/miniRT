@@ -2,55 +2,12 @@
 #include "../macro.h"
 #include "../struct.h"
 
-int	in_the_height(t_point3 *contact, t_vec3 *cylinder_dir, double height)
+int	in_the_height(t_point3 *contact, t_cylinder *cylinder, double height)
 {
 	double	contact_height;
 
-	contact_height = v_dot(*contact, v_unit(*cylinder_dir));
+	contact_height = v_dot(v_sub(*contact, cylinder->center), cylinder->dir);
 	return (-height / 2 <= contact_height && contact_height <= height / 2);
-}
-
-int	hit_by_one_circle(t_ray *ray, t_object *object,
-	t_record *hit_record, double radius)
-{
-	t_record	backup;
-	t_plane		*plane;
-
-	backup = *hit_record;
-	plane = (t_plane *)object->equation;
-	if (hit_by_plane(*ray, object, hit_record))
-	{
-		if (v_length_squared(v_sub(plane->point, hit_record->origin))
-			> pow(radius, 2))
-			*hit_record = backup;
-		return (1);
-	}
-	return (0);
-}
-
-int	hit_by_two_circles(t_ray *ray, t_cylinder *cylinder,
-	t_texture *surface, t_record *hit_record)
-{
-	t_plane		plane;
-	t_object	object;
-	int			hit;
-
-	hit = 0;
-	object.type = PLANE;
-	object.surface = *surface;
-	object.equation = &plane;
-
-	// 위 덮개
-	plane.normal = cylinder->dir;
-	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
-	hit |= hit_by_one_circle(ray, &object, hit_record, cylinder->diameter / 2);
-
-	// 아래 덮개
-	plane.normal = v_mul_scalar(cylinder->dir, -1);
-	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
-	hit |= hit_by_one_circle(ray, &object, hit_record, cylinder->diameter / 2);
-
-	return (hit);
 }
 
 int	hit_by_real_cylinder(t_ray *ray, t_cylinder *cylinder,
@@ -66,7 +23,7 @@ int	hit_by_real_cylinder(t_ray *ray, t_cylinder *cylinder,
 	coefft[1] = 2.0 * v_dot(v_cross(cylinder->dir, save), v_cross(cylinder->dir, ray->dir));
 	coefft[2] = v_length_squared(v_cross(cylinder->dir, save)) - pow(cylinder->diameter / 2, 2);
 	if (straight_curve_intersection(*ray, coefft, &contact)
-		&& in_the_height(&contact, &cylinder->dir, cylinder->height))
+		&& in_the_height(&contact, cylinder, cylinder->height))
 	{
 		if (closer_contact(*ray, contact, hit_record))
 			update_hit_record(contact,
@@ -83,6 +40,5 @@ int	hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record)
 
 	cylinder = (t_cylinder *)(object)->equation;
 	// 위, 아래 만나는지 구하기 
-	return (hit_by_real_cylinder(&ray, cylinder, &object->surface, hit_record)
-		|| hit_by_two_circles(&ray, cylinder, &object->surface, hit_record));
+	return (hit_by_real_cylinder(&ray, cylinder, &object->surface, hit_record));
 }

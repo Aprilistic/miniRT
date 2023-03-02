@@ -75,7 +75,6 @@ void	delete_hittable(t_hittable *world);
 void	camera_location_move(t_mlx *mlx, int keycode);
 int		camera_fov_change(t_mlx *mlx, int keycode);
 
-
 /* render.c */
 void	make_image(t_mlx *mlx);
 
