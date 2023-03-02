@@ -27,7 +27,7 @@ int	hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record)
 	{
 		if (closer_contact(ray, contact, hit_record))
 			update_hit_record(contact,
-				get_cylinder_normal(ray, &hit_record->origin, cylinder),
+				get_cylinder_normal(&hit_record->origin, cylinder),
 					object->surface, hit_record);
 		return (1);
 	}

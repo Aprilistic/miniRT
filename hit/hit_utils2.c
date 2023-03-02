@@ -2,22 +2,15 @@
 #include "../macro.h"
 #include "../struct.h"
 
-t_vec3	get_cylinder_normal(t_ray ray, t_vec3 *intersect, t_cylinder *cylinder)
+t_vec3	get_cylinder_normal(t_vec3 *intersect, t_cylinder *cylinder)
 {
-	t_vec3	bottom;
 	t_vec3	center;
 	t_vec3	normal;
-	double	root;
-	double	coefft[2];
+	double	length;
 
-	bottom = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
-	coefft[0] = v_dot(cylinder->dir, cylinder->dir);
-	coefft[1] = 2.0 * v_dot(v_sub(bottom, *intersect), cylinder->dir);
-	root = (-coefft[1]) / (2.0 * coefft[0]);
-	center = v_add(bottom, v_mul_scalar(cylinder->dir, root));
+	length = v_dot(cylinder->dir, v_sub(*intersect, cylinder->center));
+	center = v_mul_scalar(cylinder->dir, length);
 	normal = v_unit(v_sub(*intersect, center));
-	if (v_dot(normal, ray.dir) > 0)
-		normal = v_mul_scalar(normal, -1);
 	return (normal);
 }
 
