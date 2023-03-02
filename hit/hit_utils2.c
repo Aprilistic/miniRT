@@ -9,7 +9,7 @@ t_vec3	get_cylinder_normal(t_ray ray, t_vec3 *intersect, t_cylinder *cylinder)
 	double	length;
 
 	length = v_dot(cylinder->dir, v_sub(*intersect, cylinder->center));
-	center = v_mul_scalar(cylinder->dir, length);
+	center = v_add(cylinder->center, v_mul_scalar(cylinder->dir, length));
 	normal = v_unit(v_sub(*intersect, center));
 	if (v_dot(ray.dir, normal) > 0)
 		normal = v_mul_scalar(normal, -1);
