@@ -1,6 +1,18 @@
-#include "../function.h"
-#include "../macro.h"
-#include "../struct.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:36:04 by jinheo            #+#    #+#             */
+/*   Updated: 2023/03/02 19:36:10 by jinheo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "function.h"
+#include "macro.h"
+#include "struct.h"
 #include <math.h>
 
 void	camera_location_move(t_mlx *mlx, int keycode)

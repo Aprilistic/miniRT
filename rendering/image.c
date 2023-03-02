@@ -1,6 +1,18 @@
-#include "../function.h"
-#include "../macro.h"
-#include "../struct.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:36:14 by jinheo            #+#    #+#             */
+/*   Updated: 2023/03/02 19:36:21 by jinheo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "function.h"
+#include "macro.h"
+#include "struct.h"
 #include <unistd.h>
 
 int	create_rgb(t_color color)

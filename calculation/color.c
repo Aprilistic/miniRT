@@ -1,6 +1,18 @@
-#include "../function.h"
-#include "../macro.h"
-#include "../struct.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:35:30 by jinheo            #+#    #+#             */
+/*   Updated: 2023/03/02 19:35:36 by jinheo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "function.h"
+#include "macro.h"
+#include "struct.h"
 #include <math.h>
 #include <stdlib.h>
 
