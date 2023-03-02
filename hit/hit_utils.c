@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:34:26 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/02 19:37:14 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:47:08 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record)
 			v_cross(cylinder->dir, ray.dir));
 	coefft[2] = v_length_squared(v_cross(cylinder->dir, save))
 		- pow(cylinder->diameter / 2, 2);
-	if (straight_curve_intersection(ray, coefft, &contact)
-		&& in_the_height(&contact, cylinder, cylinder->height))
+	if (!straight_curve_intersection(ray, coefft, &contact)
+		|| !in_the_height(&contact, cylinder, cylinder->height))
+		return (0);
+	if (closer_contact(ray, contact, hit_record))
 	{
-		if (closer_contact(ray, contact, hit_record))
-			update_hit_record(contact,
-				get_cylinder_normal(ray, &contact, cylinder),
-				object->surface, hit_record);
+		update_hit_record(contact, get_cylinder_normal(ray, &contact, cylinder),
+			object->surface, hit_record);
 		return (1);
 	}
 	return (0);
