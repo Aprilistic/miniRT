@@ -40,14 +40,6 @@ void	print_object(t_object *object)
 		printf("diameter : ");
 		printf("%lf\n", ((t_cylinder *)object->equation)->diameter);
 	}
-	else if (object->type == CONE)
-	{
-		printf("* cone *\n");
-		printf("center : ");
-		print_three_doubles(&((t_cone *)object->equation)->center);
-		printf("coefficient : ");
-		print_three_doubles(&((t_cone *)object->equation)->coefficient);
-	}
 	else if (object->type == PLANE)
 	{
 		printf("* plane *\n");

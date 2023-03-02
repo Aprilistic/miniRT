@@ -63,6 +63,10 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 	if (root < 0)
 		return (0);
 	contact = v_add(ray.origin, v_mul_scalar(ray.dir, root));
+	if (plane->circle_shape
+		&& v_length_squared(v_sub(plane->point, contact))
+		> plane->radius * plane->radius)
+		return (0);
 	if (closer_contact(ray, contact, hit_record))
 	{
 		update_hit_record(contact, plane->normal, object->surface, hit_record);
@@ -76,24 +80,11 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 {
 	if (object->type == SPHERE)
-	{
-		// 구와 만나는지 구하는 함수
 		return (hit_by_sphere(ray, object, hit_record));
-	}
-	else if (object->type == CYLINDER)
-	{
-		// 원기둥과 만나는지 구하는 함수
-		return (hit_by_cylinder(ray, object, hit_record));
-	}
-	else if (object->type == CONE)
-	{
-		// 콘과 만나는지 구하는 함수
-	}
 	else if (object->type == PLANE)
-	{
-		// 면과 만나는지 구하는 함수
 		return (hit_by_plane(ray, object, hit_record));
-	}
+	else if (object->type == CYLINDER)
+		return (hit_by_cylinder(ray, object, hit_record));
 	return (0);
 }
 

@@ -34,8 +34,6 @@ int	parse_object(char *line, t_mlx *mlx, int *errno, int *cap_cnt)
 		parse_plane(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], S_CYLINDER) == OK)
 		parse_cylinder(splited_line, mlx, errno);
-	else if (ft_strcmp(splited_line[0], S_CONE) == OK)
-		parse_cone(splited_line, mlx, errno);
 	else if (ft_strcmp(splited_line[0], "#") != OK)
 		*errno |= UNDEFINED;
 	free_two_dimension(splited_line);

@@ -67,16 +67,12 @@ typedef struct s_record
 
 /*  shape structures  */
 
-typedef struct s_cone
-{
-	t_point3	center;
-	t_point3 coefficient; // 계수
-}				t_cone;
-
 typedef struct s_plane
 {
 	t_point3	point;
 	t_vec3		normal;
+	int			circle_shape;
+	double		radius;
 }				t_plane;
 
 typedef struct s_sphere

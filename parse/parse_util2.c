@@ -66,6 +66,29 @@ void	parse_plane(char **splited_line, t_mlx *mlx, int *errno)
 		add_object_hittable(&mlx->world, object);
 }
 
+void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
+{
+	t_plane		plane;
+	t_object	object;
+	t_cylinder	*cylinder;
+
+	cylinder = (t_cylinder *)cylinder_obj.equation;
+	object.type = PLANE;
+	object.equation = &plane;
+	object.surface = cylinder_obj.surface;
+
+	plane.circle_shape = 1;
+	plane.radius = cylinder->diameter / 2;
+
+	plane.normal = cylinder->dir;
+	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
+	add_object_hittable(&mlx->world, object);
+	plane.normal = v_mul_scalar(cylinder->dir, -1);
+	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
+	add_object_hittable(&mlx->world, object);
+	add_object_hittable(&mlx->world, cylinder_obj);
+}
+
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 {
 	t_object		object;
@@ -92,30 +115,5 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	*errno |= (cylinder->diameter < 0 || cylinder->height < 0) * LENGTH;
 	*errno |= (v_length(cylinder->dir) != 1) * UNIT;
 	if (*errno == OK)
-		add_object_hittable(&mlx->world, object);
-}
-
-void	parse_cone(char **splited_line, t_mlx *mlx, int *errno)
-{
-	t_object		object;
-	t_cone			*cone;
-	int				field_cnt;
-
-	field_cnt = 0;
-	while (splited_line[field_cnt])
-		field_cnt++;
-	if (field_cnt != ARG_CNT)
-	{
-		*errno |= OPTION_CNT;
-		return ;
-	}
-	cone = malloc(sizeof(t_cone));
-	cone->center = parse_three_double(splited_line[1], errno);
-	cone->coefficient = parse_three_double(splited_line[2], errno);
-	object.surface.color = parse_three_double(splited_line[3], errno);
-	parse_commons(&object, splited_line, errno, 4);
-	object.type = CONE;
-	object.equation = cone;
-	check_rgb(&object.surface.color, errno);
-	add_object_hittable(&mlx->world, object);
+		add_cylinder_hittable(mlx, object);
 }
