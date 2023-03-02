@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_utils2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:34:30 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/02 19:34:31 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:50:40 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 #include "macro.h"
 #include "struct.h"
 
-t_vec3	get_cylinder_normal(t_ray ray, t_vec3 *intersect, t_cylinder *cylinder)
+t_vec3	get_cylinder_normal(t_ray ray, t_vec3 *contact, t_cylinder *cylinder)
 {
 	t_vec3	center;
 	t_vec3	normal;
 	double	length;
 
-	length = v_dot(cylinder->dir, v_sub(*intersect, cylinder->center));
+	length = v_dot(cylinder->dir, v_sub(*contact, cylinder->center));
 	center = v_add(cylinder->center, v_mul_scalar(cylinder->dir, length));
-	normal = v_unit(v_sub(*intersect, center));
+	normal = v_unit(v_sub(*contact, center));
 	if (v_dot(ray.dir, normal) > 0)
 		normal = v_mul_scalar(normal, -1);
 	return (normal);

@@ -6,7 +6,7 @@
 /*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:34:26 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/02 19:47:08 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/02 19:52:25 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record)
 			v_cross(cylinder->dir, ray.dir));
 	coefft[2] = v_length_squared(v_cross(cylinder->dir, save))
 		- pow(cylinder->diameter / 2, 2);
-	if (!straight_curve_intersection(ray, coefft, &contact)
+	if (!straight_curve_contact(ray, coefft, &contact)
 		|| !in_the_height(&contact, cylinder, cylinder->height))
 		return (0);
 	if (closer_contact(ray, contact, hit_record))
