@@ -2,10 +2,11 @@
 #include "../macro.h"
 #include "../struct.h"
 
-t_vec3	get_cylinder_normal(t_vec3 *intersect, t_cylinder *cylinder)
+t_vec3	get_cylinder_normal(t_ray ray, t_vec3 *intersect, t_cylinder *cylinder)
 {
 	t_vec3	bottom;
 	t_vec3	center;
+	t_vec3	normal;
 	double	root;
 	double	coefft[2];
 
@@ -14,7 +15,10 @@ t_vec3	get_cylinder_normal(t_vec3 *intersect, t_cylinder *cylinder)
 	coefft[1] = 2.0 * v_dot(v_sub(bottom, *intersect), cylinder->dir);
 	root = (-coefft[1]) / (2.0 * coefft[0]);
 	center = v_add(bottom, v_mul_scalar(cylinder->dir, root));
-	return (v_unit(v_sub(*intersect, center)));
+	normal = v_unit(v_sub(*intersect, center));
+	if (v_dot(normal, ray.dir) > 0)
+		normal = v_mul_scalar(normal, -1);
+	return (normal);
 }
 
 int	closer_contact(t_ray ray, t_point3 contact, t_record *hit_record)
