@@ -6,18 +6,13 @@ t_vec3	get_cylinder_noraml(t_vec3 *intersect, t_cylinder *cylinder)
 {
 	t_vec3	origin;
 	t_vec3	center;
-	t_vec3	save;
 	double	root;
-	double	discriminant;
-	double	coefft[3];
+	double	coefft[2];
 
 	origin = v_add(cylinder->center, v_init(0, -cylinder->height / 2, 0));
-	save = v_sub(origin, *intersect);
 	coefft[0] = v_dot(cylinder->dir, cylinder->dir);
-	coefft[1] = 2.0 * v_dot(save, cylinder->dir);
-	coefft[2] = v_dot(save, save) - pow(cylinder->diameter / 2, 2);
-	discriminant = coefft[1] * coefft[1] - 4 * coefft[0] * coefft[2];
-	root = (-coefft[1] - sqrt(discriminant)) / (2.0 * coefft[0]);
+	coefft[1] = 2.0 * v_dot(v_sub(origin, *intersect), cylinder->dir);
+	root = (-coefft[1]) / (2.0 * coefft[0]);
 	center = v_add(origin, v_mul_scalar(cylinder->dir, root));
 	return (v_unit(v_sub(*intersect, center)));
 }
