@@ -73,6 +73,7 @@ void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
 	t_object	object;
 	t_cylinder	*cylinder;
 
+	add_object_hittable(&mlx->world, cylinder_obj);
 	cylinder = (t_cylinder *)cylinder_obj.equation;
 	object.type = PLANE;
 	object.equation = &plane;
@@ -94,7 +95,6 @@ void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
 	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
 
-	add_object_hittable(&mlx->world, cylinder_obj);
 }
 
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
