@@ -6,7 +6,7 @@
 /*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:37:22 by jinheo            #+#    #+#             */
-/*   Updated: 2023/03/02 19:37:23 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/02 19:44:55 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ typedef struct s_mlx
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_data		img;
-	t_hittable world; // object, ambiance, light
-	t_camera camera;  // camera
+	t_hittable	world;
+	t_camera	camera;
 }				t_mlx;
 
 #endif
