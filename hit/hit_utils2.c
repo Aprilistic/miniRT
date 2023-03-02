@@ -2,7 +2,7 @@
 #include "../macro.h"
 #include "../struct.h"
 
-t_vec3	get_cylinder_noraml(t_vec3 *intersect, t_cylinder *cylinder)
+t_vec3	get_cylinder_normal(t_vec3 *intersect, t_cylinder *cylinder)
 {
 	t_vec3	origin;
 	t_vec3	center;

@@ -2,11 +2,11 @@
 #include "../macro.h"
 #include "../struct.h"
 
-int	in_the_height(t_vec3 *contact, t_vec3 *dir, double height)
+int	in_the_height(t_point3 *contact, t_vec3 *cylinder_dir, double height)
 {
 	double	contact_height;
 
-	contact_height = v_dot(*contact, v_unit(*dir));
+	contact_height = v_dot(*contact, v_unit(*cylinder_dir));
 	return (-height / 2 <= contact_height && contact_height <= height / 2);
 }
 
@@ -67,11 +67,11 @@ int	hit_by_real_cylinder(t_ray *ray, t_cylinder *cylinder,
 	coefft[1] = 2.0 * v_dot(v_cross(cylinder->dir, save), v_cross(cylinder->dir, ray->dir));
 	coefft[2] = v_length_squared(v_cross(cylinder->dir, save)) - pow(cylinder->diameter / 2, 2);
 	if (straight_curve_intersection(*ray, coefft, &contact)
-		&& in_the_height(&contact, &ray->dir, cylinder->height))
+		&& in_the_height(&contact, &cylinder->dir, cylinder->height))
 	{
 		if (closer_contact(*ray, contact, hit_record))
 			update_hit_record(contact,
-				get_cylinder_noraml(&hit_record->origin, cylinder),
+				get_cylinder_normal(&hit_record->origin, cylinder),
 					*surface, hit_record);
 		return (1);
 	}
@@ -83,7 +83,7 @@ int	hit_by_cylinder(t_ray ray, t_object *object, t_record *hit_record)
 	t_cylinder		*cylinder;
 
 	cylinder = (t_cylinder *)(object)->equation;
-	// 위, 아래 만나는지 구하기
+	// 위, 아래 만나는지 구하기 
 	return (hit_by_real_cylinder(&ray, cylinder, &object->surface, hit_record)
 		|| hit_by_two_circles(&ray, cylinder, &object->surface, hit_record));
 }
