@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_util.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:34:57 by taeypark          #+#    #+#             */
+/*   Updated: 2023/03/02 19:39:45 by taeypark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
@@ -68,7 +80,7 @@ void	parse_camera(char **splited_line, t_mlx *mlx
 void	parse_light(char **splited_line, t_mlx *mlx
 						, int *errno, int *cap_cnt)
 {
-	// static int	was_here;
+	static int	was_here;
 	int			str_cnt;
 	t_light		light;
 	double		brightness;
@@ -76,14 +88,13 @@ void	parse_light(char **splited_line, t_mlx *mlx
 	str_cnt = 0;
 	while (splited_line[str_cnt])
 		str_cnt++;
-	if (/*was_here == 1 || */str_cnt != 4)
+	if (/* was_here == 1 || */str_cnt != 4)
 	{
-		// 여기 CAPITAL 처리.
 		*errno |= OPTION_CNT;
 		return ;
 	}
 	(*cap_cnt) = (*cap_cnt);
-	// was_here = 1;
+	was_here = 1;
 	light.origin = parse_three_double(splited_line[1], errno);
 	brightness = atod(splited_line[2], errno);
 	light.color = parse_three_double(splited_line[3], errno);

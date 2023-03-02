@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_util2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:35:00 by taeypark          #+#    #+#             */
+/*   Updated: 2023/03/02 19:41:02 by taeypark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
@@ -76,25 +88,23 @@ void	add_cylinder_hittable(t_mlx *mlx, t_object cylinder_obj)
 	add_object_hittable(&mlx->world, cylinder_obj);
 	cylinder = (t_cylinder *)cylinder_obj.equation;
 	object.type = PLANE;
-	object.equation = &plane;
 	object.surface = cylinder_obj.surface;
-
 	plane = malloc(sizeof(t_plane));
 	plane->circle_shape = 1;
 	plane->radius = cylinder->diameter / 2;
 	plane->normal = cylinder->dir;
-	plane->point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
+	plane->point = v_add(cylinder->center,
+			v_mul_scalar(cylinder->dir, cylinder->height / 2));
 	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
-
 	plane = malloc(sizeof(t_plane));
 	plane->circle_shape = 1;
 	plane->radius = cylinder->diameter / 2;
 	plane->normal = v_mul_scalar(cylinder->dir, -1);
-	plane->point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
+	plane->point = v_add(cylinder->center,
+			v_mul_scalar(cylinder->dir, -cylinder->height / 2));
 	object.equation = plane;
 	add_object_hittable(&mlx->world, object);
-
 }
 
 void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
@@ -121,7 +131,7 @@ void	parse_cylinder(char **splited_line, t_mlx *mlx, int *errno)
 	object.equation = cylinder;
 	check_rgb(&object.surface.color, errno);
 	*errno |= (cylinder->diameter < 0 || cylinder->height < 0) * LENGTH;
-	// *errno |= (v_length(cylinder->dir) != 1) * UNIT;
+	*errno |= (v_length(cylinder->dir) != 1) * UNIT;
 	if (*errno == OK)
 		add_cylinder_hittable(mlx, object);
 }

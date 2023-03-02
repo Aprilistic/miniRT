@@ -1,5 +1,17 @@
-#include "../function.h"
-#include "../struct.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hittable.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:34:36 by taeypark          #+#    #+#             */
+/*   Updated: 2023/03/02 19:35:25 by taeypark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "function.h"
+#include "struct.h"
 
 void	init_hittable(t_hittable *world)
 {

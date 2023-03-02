@@ -1,6 +1,18 @@
-#include "../function.h"
-#include "../macro.h"
-#include "../struct.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hit.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/02 19:34:33 by taeypark          #+#    #+#             */
+/*   Updated: 2023/03/02 19:35:29 by taeypark         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "function.h"
+#include "macro.h"
+#include "struct.h"
 
 int	straight_curve_intersection(t_ray ray, double *coefft, t_point3 *contact)
 {
