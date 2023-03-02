@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:34:33 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/02 19:52:25 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/02 19:54:08 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	hit_by_plane(t_ray ray, t_object *object, t_record *hit_record)
 	return (0);
 }
 
-// 각 타입에 따라서 만나는 지점을 구하는 함수로 들어간다.
 int	hit_by_object(t_ray ray, t_object *object, t_record *hit_record)
 {
 	if (object->type == SPHERE)
