@@ -4,16 +4,16 @@
 
 t_vec3	get_cylinder_normal(t_vec3 *intersect, t_cylinder *cylinder)
 {
-	t_vec3	origin;
+	t_vec3	bottom;
 	t_vec3	center;
 	double	root;
 	double	coefft[2];
 
-	origin = v_add(cylinder->center, v_init(0, -cylinder->height / 2, 0));
+	bottom = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
 	coefft[0] = v_dot(cylinder->dir, cylinder->dir);
-	coefft[1] = 2.0 * v_dot(v_sub(origin, *intersect), cylinder->dir);
+	coefft[1] = 2.0 * v_dot(v_sub(bottom, *intersect), cylinder->dir);
 	root = (-coefft[1]) / (2.0 * coefft[0]);
-	center = v_add(origin, v_mul_scalar(cylinder->dir, root));
+	center = v_add(bottom, v_mul_scalar(cylinder->dir, root));
 	return (v_unit(v_sub(*intersect, center)));
 }
 

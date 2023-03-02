@@ -41,14 +41,13 @@ int	hit_by_two_circles(t_ray *ray, t_cylinder *cylinder,
 	object.equation = &plane;
 
 	// 위 덮개
-	plane.normal = v_init(0, -1, 0);
-	// 여기서 그냥 y값을 더하면 안 된다. 기울어져 있을 때는 작동을 안 한다.
-	plane.point = v_add(cylinder->center, v_init(0, cylinder->height / 2, 0));
+	plane.normal = cylinder->dir;
+	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, cylinder->height / 2));
 	hit |= hit_by_one_circle(ray, &object, hit_record, cylinder->diameter / 2);
 
 	// 아래 덮개
-	plane.normal = v_init(0, 1, 0);
-	plane.point = v_add(cylinder->center, v_init(0, -cylinder->height / 2, 0));
+	plane.normal = v_mul_scalar(cylinder->dir, -1);
+	plane.point = v_add(cylinder->center, v_mul_scalar(cylinder->dir, -cylinder->height / 2));
 	hit |= hit_by_one_circle(ray, &object, hit_record, cylinder->diameter / 2);
 
 	return (hit);
