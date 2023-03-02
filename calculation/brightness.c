@@ -6,7 +6,7 @@
 /*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:35:11 by jinheo            #+#    #+#             */
-/*   Updated: 2023/03/02 19:35:19 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/02 21:40:27 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,11 @@ t_color	light_from_spot(t_record *point, t_hittable *world)
 		hit_record.origin = v_init(INF, INF, INF);
 		incident.origin = point->origin;
 		incident.dir = v_unit(v_sub(world->light[index].origin, point->origin));
+		if (v_dot(incident.dir, point->normal) < 0)
+			continue ;
 		if (hit(incident, world, &hit_record))
-			if (v_length_squared(v_sub(hit_record.origin, point->origin))
-				< v_length_squared(v_sub(world->light[index].origin,
-						point->origin)))
+			if (v_length(v_sub(hit_record.origin, point->origin))
+				< v_length(v_sub(world->light[index].origin, point->origin)))
 				continue ;
 		incident_color = v_mul_scalar(world->light[index].color,
 				v_dot(point->normal, incident.dir)
