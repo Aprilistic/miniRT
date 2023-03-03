@@ -6,7 +6,7 @@
 /*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:36:04 by jinheo            #+#    #+#             */
-/*   Updated: 2023/03/02 19:36:10 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/03 22:07:29 by jinheo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,20 @@
 void	camera_location_move(t_mlx *mlx, int keycode)
 {
 	t_vec3	*cam_location;
-	t_vec3	horizontal_dir;
-	t_vec3	vertical_dir;
 
 	cam_location = &mlx->camera.origin;
-	horizontal_dir = v_cross(v_init(0, 1, 0), mlx->camera.dir);
-	horizontal_dir = v_unit(horizontal_dir);
-	vertical_dir = v_cross(mlx->camera.dir, horizontal_dir);
-	vertical_dir = v_unit(vertical_dir);
 	if (keycode == LEFT_ARROW_KEY)
-		*cam_location = v_sub(*cam_location, horizontal_dir);
+		*cam_location = v_sub(*cam_location, mlx->camera.u);
 	else if (keycode == RIGHT_ARROW_KEY)
-		*cam_location = v_add(*cam_location, horizontal_dir);
+		*cam_location = v_add(*cam_location, mlx->camera.u);
 	else if (keycode == DOWN_ARROW_KEY)
 		*cam_location = v_sub(*cam_location, mlx->camera.dir);
 	else if (keycode == UP_ARROW_KEY)
 		*cam_location = v_add(*cam_location, mlx->camera.dir);
-	else if (keycode == PAGE_UP_KEY)
-		*cam_location = v_add(*cam_location, vertical_dir);
 	else if (keycode == PAGE_DOWN_KEY)
-		*cam_location = v_sub(*cam_location, vertical_dir);
+		*cam_location = v_sub(*cam_location, mlx->camera.v);
+	else if (keycode == PAGE_UP_KEY)
+		*cam_location = v_add(*cam_location, mlx->camera.v);
 }
 
 int	camera_fov_change(t_mlx *mlx, int keycode)
