@@ -6,13 +6,21 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:35:09 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/02 19:37:41 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:10:15 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
+
+void	check_rgb(t_color *color, int *errno)
+{
+	if (!(0 <= color->e[0] && color->e[0] <= 255)
+		|| !(0 <= color->e[1] && color->e[1] <= 255)
+		|| !(0 <= color->e[2] && color->e[2] <= 255))
+		*errno |= RGB;
+}
 
 void	free_two_dimension(char **to_free)
 {
@@ -59,7 +67,7 @@ int	parse(char *file, t_mlx *mlx, int *errno)
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	if (fd == ERROR)
+	if (fd == ERROR || read(fd, NULL, 0) == ERROR)
 		return (ERROR);
 	cap_cnt = 0;
 	init_hittable(&mlx->world);

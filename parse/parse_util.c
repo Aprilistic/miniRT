@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jinheo <jinheo@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:34:57 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/03 22:05:16 by jinheo           ###   ########.fr       */
+/*   Updated: 2023/03/03 22:09:57 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 #include "macro.h"
 #include "function.h"
-
-void	check_rgb(t_color *color, int *errno)
-{
-	if (!(0 <= color->e[0] && color->e[0] <= 255)
-		|| !(0 <= color->e[1] && color->e[1] <= 255)
-		|| !(0 <= color->e[2] && color->e[2] <= 255))
-		*errno |= RGB;
-}
 
 void	parse_ambient(char **splited_line, t_mlx *mlx
 						, int *errno, int *cap_cnt)
