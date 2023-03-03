@@ -6,7 +6,7 @@
 /*   By: taeypark <taeypark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 19:35:04 by taeypark          #+#    #+#             */
-/*   Updated: 2023/03/03 22:07:36 by taeypark         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:15:51 by taeypark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_vec3	parse_three_double(char *str, int *errno)
 	while (str[++i])
 		if (str[i] == ',')
 			comma_cnt++;
-	if (comma_cnt != 3)
+	if (comma_cnt != 2)
 	{
 		*errno |= NUM;
 		return (v_init(0, 0, 0));
