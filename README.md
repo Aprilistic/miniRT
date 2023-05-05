@@ -13,7 +13,7 @@ Everything is rendered by vector operation. Ray starts from the camera then trac
 3. Cylinder
 
 ## How to run? (Works on macOS)
-Enter command 'make' in the cloned folder. Then executable named 'miniRT' will appear. Run it with *.rt file!
+Enter command 'make' in the cloned folder. Then executable named 'miniRT' will appear. Run it with provided .rt file!
 './miniRT /rt/pyramid.rt'
 
 
