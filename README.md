@@ -5,7 +5,7 @@ We made a ray tracing renderer in C.
 
 ## How we coded?
 ### Ray
-Everything is rendered by vector operation. Ray starts from the camera then traces the closest object and reflects from it. When a ray hits a surface, it leads to creating two new rays(diffuse reflection, specular reflection). In default, reflection is limited to 3 times(2^3 vector calculations per pixel)
+Everything is rendered by vector operation. Ray starts from the camera then traces the closest object and reflects from it. When a ray hits a surface, it leads to creating two new rays(diffuse reflection, and specular reflection). In default, reflection is limited to 3 times(2^3 vector calculations per pixel)
 
 ### Objects
 1. Plane
@@ -13,7 +13,7 @@ Everything is rendered by vector operation. Ray starts from the camera then trac
 3. Cylinder
 
 ## How to run? (Works on macOS)
-Enter command 'make' in the cloned folder. Then executable named 'miniRT' will appear. Run it with provided .rt file!
+Enter the command 'make' in the cloned folder. Then executable named 'miniRT' will appear. Run it with the provided .rt file!
 './miniRT /rt/pyramid.rt'
 
 
